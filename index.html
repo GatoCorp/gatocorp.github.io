@@ -5,15 +5,17 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="../static/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../static/css/styles.css" rel="stylesheet">
+  <link href="./static/css/bootstrap.min.css" rel="stylesheet">
+  <link href="./static/css/styles.css" rel="stylesheet">
   <title>Inicio de Sesion</title>
 </head>
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
-      <a class="navbar-brand" href="../index.html"><img class="avatar" src="../logo_emi.png" alt="Banner Emi"></a>
+      <a class="navbar-brand" href="./">
+        <img class="avatar" src="../logo_emi.png" alt="Banner Emi" />
+      </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01"
         aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -31,20 +33,13 @@
     </div>
   </nav>
   <div class='login-box'>
-    <img class="avatar" src="../assets/descarga.png" alt="Logo Emi">
+    <img class="avatar" src="./assets/descarga.png" alt="Logo Emi">
     <form>
-      <!--Username-->
-      <div class="form-group">
-        <label class="col-form-label mt-4" for="inputDefault">Codigo</label>
-        <input type="text" class="form-control" placeholder="Codigo" id="inputDefault">
-      </div>
-      <!--Passworrd-->
-      <div class="form-group">
-        <label for="exampleInputPassword1" class="form-label mt-4">Contraseña</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña">
-      </div>
 
-      <a type="button" class="btn btn-light login" value="Ingresar" href="./student.html">Ingresar</a>
+      <a role="button" class="btn btn-light estudiantes" href="./templates/login.html">
+        Estudiante Regular</a>
+      <a role="button" class="btn btn-light estudiantes" href="">
+        Estudiante Nuevo</a>
     </form>
   </div>
 </body>
