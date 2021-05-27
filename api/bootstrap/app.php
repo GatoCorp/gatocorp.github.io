@@ -24,10 +24,8 @@ $app = new Laravel\Lumen\Application(
 );
 
 // $app->withFacades();
-
 $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
-
-$app->withEloquent(); //Para manejar bases de datos
+$app->withEloquent();
 
 /*
 |--------------------------------------------------------------------------
