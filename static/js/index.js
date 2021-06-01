@@ -1,4 +1,4 @@
-function App() {
+function Navbar() {
   return (
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
@@ -7,7 +7,6 @@ function App() {
           aria-controls="navbarColor03" aria-expanded="true" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-
         <div class="navbar-collapse collapse" id="navbarColor03">
           <ul class="navbar-nav me-auto">
             <li class="nav-item">
@@ -38,6 +37,24 @@ function App() {
         </div>
       </div>
     </nav>
+  )
+}
+
+function Footer() {
+  return (
+    <footer>
+      <p>&copy; {new Date().getFullYear()} Copyright GatoCorp</p>
+
+    </footer>
+  )
+}
+
+function App() {
+  return (
+    <React.Fragment>
+      <Navbar />
+      <Footer />
+    </React.Fragment>
   )
 }
 
