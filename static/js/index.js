@@ -25,7 +25,7 @@ function App() {
               <a class="nav-link" href="#">About</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle show" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">Dropdown</a>
+              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">Dropdown</a>
               <div class="dropdown-menu" data-bs-popper="none">
                 <a class="dropdown-item" href="#">Action</a>
                 <a class="dropdown-item" href="#">Another action</a>
@@ -38,7 +38,6 @@ function App() {
         </div>
       </div>
     </nav>
-
   )
 }
 
