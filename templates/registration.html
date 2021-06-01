@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../static/css/styles.css" rel="stylesheet">
+  <title>Inscripcion</title>
+  <script src="https://kit.fontawesome.com/0c532b5ddc.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav me-auto">
+
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-sm-2" type="text" placeholder="Search">
+          <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  <div class="container photocontainer">
+    <div class="wrapper">
+      <div class="image">
+        <!--<img src = "../assets/placeholder.jpg">-->
+      </div>
+      <div class="content">
+        <div class="icon"><i class="fa-solid fa-image"></i></div>
+        <div class="text">No file chosen,yet</div>
+      </div>
+    </div>
+    <input id="default-btn" type="file">
+  </div>
+  <form>
+    <fieldset>
+      <legend>Formulario de Registro</legend>
+      <div class="form-group">
+        <label class="col-form-label mt-4" for="inputDefault">Nombre Completo
+        </label>
+        <input type="text" class="form-control" placeholder="Default input" id="inputDefault">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1" class="form-label mt-4">Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1"placeholder="Password">
+      </div>
+      <div class="form-group">
+        <label for="exampleSelect1" class="form-label mt-4">Example select</label>
+        <select class="form-select" id="exampleSelect1">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="exampleSelect2" class="form-label mt-4">Example multiple select</label>
+        <select multiple="" class="form-select" id="exampleSelect2">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="exampleTextarea" class="form-label mt-4">Example textarea</label>
+        <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="formFile" class="form-label mt-4">Default file input example</label>
+        <input class="form-control" type="file" id="formFile">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </fieldset>
+  </form>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+</html>

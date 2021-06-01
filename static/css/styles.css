@@ -39,7 +39,7 @@
     top:80px;
     right: 10px;
 }
-.container .form-control-plaintext{
+.studentcontainer .form-control-plaintext{
     font-size: 20px;
     position: relative;
     right: 10px;
@@ -52,12 +52,46 @@
     border-radius: 100%;
     float: left;
 }
-.container {
-    height: 350px;
+.studentcontainer {
+    height: 340px;
 }
-.container .columna {
+
+.studentcontainer .columna {
     width: fit-content;
 }
-.container .col-sm-10 {
+.studentcontainer .col-sm-10 {
     width: 600px;
+}
+.photocontainer{
+    width:400px;
+    height: 400px;
+    float: left;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 50px;
+}
+.photocontainer .wrapper{
+    position: relative;
+    height: 300px;
+    width: 100%;
+    border: 2px dashed #ccc;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.wrapper .image {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapper .image img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
 }
