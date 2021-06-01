@@ -95,3 +95,20 @@
     width: 100%;
     object-fit: cover;
 }
+.wrapper .icon {
+    font-size: 100px;
+}
+.wrapper .text{
+    font-size: 20px;
+    font-weight: 500;
+}
+.wrapper .active {
+    border : none;
+}
+.textb {
+    width: 450px;
+    float: left;
+    margin-right: 50px;
+    margin-top: 0px;
+    position: relative;
+}
