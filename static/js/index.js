@@ -41,11 +41,41 @@ function Footer() {
   )
 }
 
+function Home() {
+  const Link = ReactRouterDOM.Link
+  return (
+    <div class="home">
+      <img src="https://www.emi.edu.bo/images/emi-900.png" alt="castillo de la emi" class="logo-emi" />
+      <h3>Página principal</h3>
+      <Link to="/uno/nombreDePrueba">uno</Link>
+      <br />
+      <Link to="/dos">dos</Link>
+    </div>
+  )
+}
+function paginauno(props) {
+  return (<h1>soy el uno {props.match.params.name}</h1>)
+}
+
+function paginados() {
+  return (<h1>soy el dos</h1>)
+}
+
 function App() {
+  const Router = ReactRouterDOM.BrowserRouter
+  const Route = ReactRouterDOM.Route
+  const Switch = ReactRouterDOM.Switch
   return (
     <React.Fragment>
-      <Navbar />
-      <Footer />
+      <Router>
+        <Navbar />
+        <Switch>
+          <Route path="/uno/:name" component={paginauno} />
+          <Route path="/dos" component={paginados} />
+          <Route path="/" component={Home} />
+        </Switch>
+        <Footer />
+      </Router>
     </React.Fragment>
   )
 }

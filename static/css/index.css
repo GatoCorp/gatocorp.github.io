@@ -11,3 +11,20 @@ footer {
 .dropdown-menu > a:hover {
   background-color: gray;
 }
+.navbar-toggler:hover {
+  background-color: rgb(201, 201, 201);
+}
+.logo-emi {
+  width: 50%;
+  height: 50%;
+}
+.home {
+  margin-top: 10vh;
+  text-align: center;
+}
+.home a {
+  font-size: calc(15px + 2vh);
+}
+.home img {
+  margin-bottom: 15px;
+}
