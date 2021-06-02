@@ -16,12 +16,8 @@
     <div class="container-fluid">
       <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav me-auto">
-
+          <a class="navbar-brand" style="font-size: 30px; padding-left: 40px;" >Formulario de Registro</a>
         </ul>
-        <form class="d-flex">
-          <input class="form-control me-sm-2" type="text" placeholder="Search">
-          <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-        </form>
       </div>
     </div>
   </nav>
@@ -32,14 +28,14 @@
       </div>
       <div class="content">
         <div class="icon"><i class="far fa-image"></i></div>
-        <div class="text">No file chosen,yet</div>
+        <div class="text">Aun no cargo ninguna foto</div>
       </div>
     </div>
     <input id="default-btn" type="file">
   </div>
   <form>
     <fieldset>
-      <legend>Formulario de Registro</legend>
+      <legend>Datos del estudiante</legend>
       <div class="form-group textb">
         <label class="form-label mt-4" for="inputDefault">Nombres
         </label>
@@ -61,21 +57,38 @@
         <small id="emailHelp" class="form-text text-muted"></small>
       </div>
       <div class="form-group textb">
-        <label for="exampleSelect1" class="form-label mt-4">Example select</label>
-        <select class="form-select" id="exampleSelect1">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
+        <label for="exampleSelect1" class="form-label mt-4">Carreras</label>
+        <select class="form-select" id="carreras" size="1">
         </select>
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <div class="form-group textb">
+        <fieldset>
+          <label class="form-label mt-4" for="readOnlyInput">Semestre</label>
+          <input class="form-control" id="readOnlyInput" type="text" placeholder="" readonly="">
+        </fieldset>
+      </div>
+      <div class="archivos">
+        <legend>Archivos del estudiante</legend>
+        <div class="form-group textb">
+          <label for="formFile" class="form-label mt-4">Certificado de Nacimiento</label>
+          <input class="form-control" type="file" id="formFile">
+        </div>
+        <div class="form-group textb" >
+          <label for="formFile" class="form-label mt-4">Titulo de bachiller</label>
+          <input class="form-control" type="file" id="formFile">
+        </div>
+        <div class="form-group textb" >
+          <label for="formFile" class="form-label mt-4">Certificado Medico</label>
+          <input class="form-control" type="file" id="formFile">
+        </div>
+      </div>
+      <button type="button" class="btn btn-primary boton">Cancelar</button>
+      <button type="button" id="btnenviar" class="btn btn-primary boton">Enviar</button>
     </fieldset>
   </form>
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-<script src = "../static/JS/script.js"></script>
+<script src = "../static/JS/registro.js"></script>
 </html>
