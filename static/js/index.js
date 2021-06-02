@@ -10,10 +10,10 @@ function Navbar() {
         <div class="navbar-collapse collapse" id="navbarColor03">
           <ul class="navbar-nav me-auto">
             <li class="nav-item">
-              <a class="nav-link" href="#">Inscripciones</a>
+              <a class="nav-link" href="../../emi/index.html">Inscripciones</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Perfil de estudiante</a>
+              <a class="nav-link" href="../../emi/login.html">Perfil de estudiante</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
@@ -41,6 +41,7 @@ function Footer() {
     </footer>
   )
 }
+
 function Imagenes() {
   return (
     <div class="container-imagenes">
@@ -56,6 +57,7 @@ function Imagenes() {
     </div>
   )
 }
+
 function Objeto(props) {
   return (
     <div class="objeto">
@@ -65,6 +67,7 @@ function Objeto(props) {
     </div>
   )
 }
+
 function Home() {
   return (
     <div class="home">
@@ -83,6 +86,7 @@ function Home() {
     </div>
   )
 }
+
 function paginauno(props) {
   return (<h1>soy el uno {props.match.params.name}</h1>)
 }
