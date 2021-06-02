@@ -58,7 +58,7 @@ function Objeto(props) {
   return (
     <div class="objeto">
       <img src={props.imageUrl} />
-      <h2>props.titulo</h2>
+      <h2>{props.titulo}</h2>
       <p>{props.parrafo}</p>
     </div>
   )
@@ -71,11 +71,11 @@ function Home() {
       <p>El año 1950, como resultado de un proceso de estudios organizacionales y analíticos el Estado Mayor del Ejército de Bolivia determinó la creación de un Instituto Técnico de nivel académico, con la responsabilidad de formar oficiales del Ejército, ampliándose la oferta académica en el año 1980.</p>
       <Imagenes />
       <div class="d-flex">
-        <Objeto imageUrl="../../assets/prestigio.png" titulo="Prestigio"
+        <Objeto imageUrl="https://gatocorp.github.io/assets/prestigio.png" titulo="Prestigio"
           parrafo="Somos especialistas en la formación de Ingenieros, líderes en los campos científicos y tecnológicos." />
-        <Objeto imageUrl="../../assets/disciplina.png" titulo="Disciplina"
+        <Objeto imageUrl="https://gatocorp.github.io/assets/disciplina.png" titulo="Disciplina"
           parrafo="Es el valor mas importante y fundamental en la formación de nuestros estudiantes." />
-        <Objeto imageUrl="../../assets/opors.png" titulo="Mejores Oportunidades"
+        <Objeto imageUrl="https://gatocorp.github.io/assets/opors.png" titulo="Mejores Oportunidades"
           parrafo="Nuestros profesionales #SelloEMI trabajando en las empresas mas prestigiosas a nivel nacional e internacional." />
       </div>
     </div>
@@ -102,7 +102,7 @@ function App() {
           <Route path="/dos" component={paginados} />
           <Route path="/" component={Home} />
         </Switch>
-        {/* <Footer /> */}
+        <Footer />
       </Router>
     </React.Fragment>
   )
