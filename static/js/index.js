@@ -50,7 +50,9 @@ function Imagenes() {
       <img src="https://santacruz.emi.edu.bo/images/Carrucel_carreras/ing_industrial.jpg" />
       <img src="https://santacruz.emi.edu.bo/images/Carrucel_carreras/ing_sistemas.jpg" />
       <img src="https://santacruz.emi.edu.bo/images/Carrucel_carreras/ing_ambiental.jpg" />
+      <img src="https://santacruz.emi.edu.bo/images/Carrucel_carreras/ing_sist_electronicos.jpg" />
       <img src="https://santacruz.emi.edu.bo/images/Carrucel_carreras/ing_mecatronica.jpg" />
+      <img src="https://santacruz.emi.edu.bo/images/Carrucel_carreras/ing_petrolera.jpg" />
     </div>
   )
 }
