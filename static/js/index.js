@@ -10,13 +10,14 @@ function Navbar() {
         <div class="navbar-collapse collapse" id="navbarColor03">
           <ul class="navbar-nav me-auto">
             <li class="nav-item">
-              <a class="nav-link" href="#">Home</a>
+              <a class="nav-link" href="#">Inscripciones</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Features</a>
+              <a class="nav-link" href="#">Perfil de estudiante</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">Dropdown</a>
+              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                aria-haspopup="true" aria-expanded="true">Carreras Ofertadas</a>
               <div class="dropdown-menu" data-bs-popper="none">
                 <a class="dropdown-item" href="#">Action</a>
                 <a class="dropdown-item" href="#">Another action</a>
@@ -40,16 +41,43 @@ function Footer() {
     </footer>
   )
 }
-
+function Imagenes() {
+  return (
+    <div class="container-imagenes">
+      <img src="https://santacruz.emi.edu.bo/images/Carrucel_carreras/ing_comercial.jpg" />
+      <img src="https://santacruz.emi.edu.bo/images/Carrucel_carreras/ing_agronomica.jpg" />
+      <img src="https://santacruz.emi.edu.bo/images/Carrucel_carreras/ing_civil.jpg" />
+      <img src="https://santacruz.emi.edu.bo/images/Carrucel_carreras/ing_industrial.jpg" />
+      <img src="https://santacruz.emi.edu.bo/images/Carrucel_carreras/ing_sistemas.jpg" />
+      <img src="https://santacruz.emi.edu.bo/images/Carrucel_carreras/ing_ambiental.jpg" />
+      <img src="https://santacruz.emi.edu.bo/images/Carrucel_carreras/ing_mecatronica.jpg" />
+    </div>
+  )
+}
+function Objeto(props) {
+  return (
+    <div class="objeto">
+      <img src={props.imageUrl} />
+      <h2>props.titulo</h2>
+      <p>{props.parrafo}</p>
+    </div>
+  )
+}
 function Home() {
-  const Link = ReactRouterDOM.Link
   return (
     <div class="home">
       <img src="https://www.emi.edu.bo/images/emi-900.png" alt="castillo de la emi" class="logo-emi" />
-      <h3>Página principal</h3>
-      <Link to="/uno/nombreDePrueba">uno</Link>
-      <br />
-      <Link to="/dos">dos</Link>
+      <h1>¿Quiénes Somos?</h1>
+      <p>El año 1950, como resultado de un proceso de estudios organizacionales y analíticos el Estado Mayor del Ejército de Bolivia determinó la creación de un Instituto Técnico de nivel académico, con la responsabilidad de formar oficiales del Ejército, ampliándose la oferta académica en el año 1980.</p>
+      <Imagenes />
+      <div class="d-flex">
+        <Objeto imageUrl="../../assets/prestigio.png" titulo="Prestigio"
+          parrafo="Somos especialistas en la formación de Ingenieros, líderes en los campos científicos y tecnológicos." />
+        <Objeto imageUrl="../../assets/disciplina.png" titulo="Disciplina"
+          parrafo="Es el valor mas importante y fundamental en la formación de nuestros estudiantes." />
+        <Objeto imageUrl="../../assets/opors.png" titulo="Mejores Oportunidades"
+          parrafo="Nuestros profesionales #SelloEMI trabajando en las empresas mas prestigiosas a nivel nacional e internacional." />
+      </div>
     </div>
   )
 }
@@ -74,7 +102,7 @@ function App() {
           <Route path="/dos" component={paginados} />
           <Route path="/" component={Home} />
         </Switch>
-        <Footer />
+        {/* <Footer /> */}
       </Router>
     </React.Fragment>
   )

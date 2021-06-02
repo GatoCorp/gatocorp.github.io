@@ -19,12 +19,32 @@ footer {
   height: 50%;
 }
 .home {
-  margin-top: 10vh;
+  display: flex;
+  flex-direction: column;
   text-align: center;
-}
-.home a {
-  font-size: calc(15px + 2vh);
+  justify-content: center;
 }
 .home img {
-  margin-bottom: 15px;
+  margin: 30px auto;
+}
+.home p {
+  margin: auto;
+  width: 50%;
+  font-size: 2vh;
+}
+.container-imagenes {
+  margin: 5vh auto;
+  width: 90vw;
+  display: flex;
+  overflow-x: scroll;
+  border: 1px solid rgb(168, 161, 161);
+  box-shadow: 5px 5px 5px 5px rgb(168, 161, 161);
+  scrollbar-color: rgb(78, 77, 77) rgb(143, 138, 138);
+  scrollbar-width: thin;
+}
+.container-imagenes img {
+  margin: 5px 0;
+  width: 25vh;
+  height: 25vh;
+  padding: 0 10px;
 }
