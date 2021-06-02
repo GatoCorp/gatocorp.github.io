@@ -1,4 +1,13 @@
 function Navbar() {
+  const Link = ReactRouterDOM.Link
+  const [carreras, setCarreras] = React.useState([])
+
+  React.useEffect(() => {
+    fetch('https://gatocorpapi.herokuapp.com/carrera_aux')
+      .then(response => response.json())
+      .then(data => setCarreras(data))
+  }, [])
+
   return (
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
@@ -19,11 +28,13 @@ function Navbar() {
               <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
                 aria-haspopup="true" aria-expanded="true">Carreras Ofertadas</a>
               <div class="dropdown-menu" data-bs-popper="none">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Separated link</a>
+                {
+                  carreras.map(carrera => (
+                    <Link class="dropdown-item" to={`/carrera/${carrera['nombre']}`}>
+                      {carrera['nombre_completo']}
+                    </Link>
+                  ))
+                }
               </div>
             </li>
           </ul>
@@ -87,12 +98,42 @@ function Home() {
   )
 }
 
-function paginauno(props) {
-  return (<h1>soy el uno {props.match.params.name}</h1>)
-}
+function carrera(props) {
+  const [datos, setDatos] = React.useState([])
 
-function paginados() {
-  return (<h1>soy el dos</h1>)
+  React.useEffect(() => {
+    fetch(`https://gatocorpapi.herokuapp.com/carrera/${props.match.params.name}`)
+      .then(response => response.json())
+      .then(data => setDatos(data))
+  }, [props.match.params])
+
+  return (
+    <div class="container-carrera">
+      <h1>{datos['nombre']}</h1>
+
+      <div class="subcontainer-carrera">
+        <div class="texto">
+          <h2>OBJETIVO DE LA CARRERA</h2>
+          <p>{datos['objetivo']}</p>
+        </div>
+        <img src={datos['logo']} />
+      </div>
+
+      <h2>OBJETO DE LA CARRERA</h2>
+      <p>{datos['objeto']}</p>
+
+      <h2>COMPETENCIA DEL PROFESIONAL</h2>
+      <p>{datos['competencia']}</p>
+
+      <h2>CAMPO LABORAL</h2>
+      <p>{datos['campo']}</p>
+
+      <div class="malla">
+        <h2>MALLA CURRICULAR</h2>
+        <img src={datos['malla']} />
+      </div>
+    </div>
+  )
 }
 
 function App() {
@@ -104,8 +145,7 @@ function App() {
       <Router>
         <Navbar />
         <Switch>
-          <Route path="/uno/:name" component={paginauno} />
-          <Route path="/dos" component={paginados} />
+          <Route path="/carrera/:name" component={carrera} />
           <Route path="/" component={Home} />
         </Switch>
         <Footer />

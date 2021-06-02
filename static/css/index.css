@@ -54,3 +54,54 @@ footer p {
   color: #144570;
   font-weight: bold;
 }
+
+.container-carrera {
+  padding: 5vh;
+}
+.container-carrera p {
+  font-size: calc(10px + 1vh);
+  margin-bottom: 30px;
+}
+.container-carrera h1 {
+  font-size: calc(30px + 3vh);
+  margin-bottom: 35px;
+  font-weight: bold;
+}
+.container-carrera>img {
+  margin: auto;
+}
+
+.subcontainer-carrera {
+  display: flex;
+}
+
+.subcontainer-carrera img {
+  height: 50%;
+  width: 50%;
+  max-width: 500px;
+  max-height: 500px;
+}
+
+.subcontainer-carrera p {
+  width: 50vw;
+}
+
+.texto {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  font-size: calc(10px + 1vh);
+}
+
+.malla {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.malla img {
+  max-width: 800px;
+  margin: auto;
+}
