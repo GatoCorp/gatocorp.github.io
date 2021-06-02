@@ -66,7 +66,6 @@ btnenviar.addEventListener('click',async function(){
     const correo = document.getElementById('correo').value
     const carrera = document.getElementById('carrera').value
     const semestre = document.getElementById('semestre').value
-    console.log(carrera)
     data = {
         codigo : codigo,
         nombre : nombre,
