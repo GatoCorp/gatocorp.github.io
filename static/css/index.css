@@ -1,13 +1,107 @@
 footer {
-  position: absolute;
+  margin-top: 15px;
   text-align: center;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  background-color: rgb(168, 161, 161);
+}
+footer p {
+  margin: 0;
+  padding: 5px 0;
 }
 .nav-item a:hover {
   font-weight: bold;
 }
 .dropdown-menu > a:hover {
   background-color: gray;
+}
+.navbar-toggler:hover {
+  background-color: rgb(201, 201, 201);
+}
+.logo-emi {
+  width: 50%;
+  height: 50%;
+}
+.home {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+}
+.home img {
+  margin: 30px auto;
+}
+.home p {
+  margin: auto;
+  width: 50%;
+  font-size: 2vh;
+}
+.container-imagenes {
+  margin: 5vh auto;
+  width: 90vw;
+  display: flex;
+  overflow-x: scroll;
+  border: 1px solid rgb(168, 161, 161);
+  box-shadow: 5px 5px 5px 5px rgb(168, 161, 161);
+  scrollbar-color: rgb(78, 77, 77) rgb(143, 138, 138);
+  scrollbar-width: thin;
+}
+.container-imagenes img {
+  margin: 5px 0;
+  width: 25vh;
+  height: 25vh;
+  padding: 0 10px;
+}
+.objeto h2 {
+  color: #144570;
+  font-weight: bold;
+}
+
+.container-carrera {
+  padding: 5vh;
+}
+.container-carrera p {
+  font-size: calc(10px + 1vh);
+  margin-bottom: 30px;
+}
+.container-carrera h1 {
+  font-size: calc(30px + 3vh);
+  margin-bottom: 35px;
+  font-weight: bold;
+}
+.container-carrera>img {
+  margin: auto;
+}
+
+.subcontainer-carrera {
+  display: flex;
+}
+
+.subcontainer-carrera img {
+  height: 50%;
+  width: 50%;
+  max-width: 500px;
+  max-height: 500px;
+}
+
+.subcontainer-carrera p {
+  width: 50vw;
+}
+
+.texto {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  font-size: calc(10px + 1vh);
+}
+
+.malla {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.malla img {
+  max-width: 800px;
+  margin: auto;
 }
