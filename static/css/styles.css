@@ -112,3 +112,17 @@
     margin-top: 0px;
     position: relative;
 }
+.archivos .textb {
+    width: 300px;
+    margin-bottom: 40px;
+}
+legend {
+    margin-top: 30px;
+}
+.boton {
+    float: left;
+    width: 200px;
+    position: relative;
+    left: 240px;
+    margin-right: 120px;
+}
