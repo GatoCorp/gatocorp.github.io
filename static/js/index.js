@@ -87,11 +87,11 @@ function Home() {
       <p>El año 1950, como resultado de un proceso de estudios organizacionales y analíticos el Estado Mayor del Ejército de Bolivia determinó la creación de un Instituto Técnico de nivel académico, con la responsabilidad de formar oficiales del Ejército, ampliándose la oferta académica en el año 1980.</p>
       <Imagenes />
       <div class="d-flex">
-        <Objeto imageUrl="https://gatocorp.github.io/assets/prestigio.png" titulo="Prestigio"
+        <Objeto imageUrl="../../assets/prestigio.png" titulo="Prestigio"
           parrafo="Somos especialistas en la formación de Ingenieros, líderes en los campos científicos y tecnológicos." />
-        <Objeto imageUrl="https://gatocorp.github.io/assets/disciplina.png" titulo="Disciplina"
+        <Objeto imageUrl="../../assets/disciplina.png" titulo="Disciplina"
           parrafo="Es el valor mas importante y fundamental en la formación de nuestros estudiantes." />
-        <Objeto imageUrl="https://gatocorp.github.io/assets/opors.png" titulo="Mejores Oportunidades"
+        <Objeto imageUrl="../../assets/opors.png" titulo="Mejores Oportunidades"
           parrafo="Nuestros profesionales #SelloEMI trabajando en las empresas mas prestigiosas a nivel nacional e internacional." />
       </div>
     </div>

@@ -27,10 +27,16 @@
     width: 100px;
     height: 50px;
 }
-.navbar .avatar{
-    padding-left: 50px;
+.navbar {
+    padding: 0.5em 0;
 }
-
+.navbar .avatar {
+    height: 50px;
+    width: 150px;
+    background-color: white;
+    padding: 7px;
+    border-radius: 3px;
+}
 .login-box .estudiantes{
     width: 240px;
     height: 50px;
@@ -108,9 +114,14 @@
 .textb {
     width: 450px;
     float: left;
-    margin-right: 50px;
-    margin-top: 0px;
     position: relative;
+}
+.textb > input {
+    width: max-content;
+} 
+
+.archivos > div {
+    max-width: max-content;
 }
 .archivos .textb {
     width: 280px;
