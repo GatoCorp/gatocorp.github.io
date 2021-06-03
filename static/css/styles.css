@@ -126,3 +126,6 @@ legend {
     left: 200px;
     margin-right: 120px;
 }
+.mh .dropdown-menu {
+    max-height: 100px;
+}

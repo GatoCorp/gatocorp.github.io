@@ -15,26 +15,6 @@ document.addEventListener('DOMContentLoaded',function(){
 
     document.getElementById('semestre').setAttribute('value','1')
 
-    document.getElementById('carrera').addEventListener('click', onClickHandler);
-    document.getElementById('carrera').addEventListener('mousedown', onMouseDownHandler);
-
-    function onMouseDownHandler(e){
-    	var el = e.currentTarget;
-    
-        if(el.hasAttribute('size') && el.getAttribute('size') == '1'){
-        	e.preventDefault();    
-        }
-    }
-    function onClickHandler(e) {
-     	var el = e.currentTarget; 
-
-        if (el.getAttribute('size') == '1') {
-            el.setAttribute('size', '6');
-        }
-        else {
-            el.setAttribute('size', '1');
-        }
-    }
 })
 const  defaultBtn = document.querySelector("#default-btn")
 const img = document.querySelector("img")
