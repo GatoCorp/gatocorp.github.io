@@ -3,37 +3,46 @@ footer {
   text-align: center;
   background-color: rgb(168, 161, 161);
 }
+
 footer p {
   margin: 0;
   padding: 5px 0;
 }
+
 .nav-item a:hover {
   font-weight: bold;
 }
+
 .dropdown-menu > a:hover {
   background-color: gray;
 }
+
 .navbar-toggler:hover {
   background-color: rgb(201, 201, 201);
 }
+
 .logo-emi {
   width: 50%;
   height: 50%;
 }
+
 .home {
   display: flex;
   flex-direction: column;
   text-align: center;
   justify-content: center;
 }
+
 .home img {
   margin: 30px auto;
 }
+
 .home p {
   margin: auto;
   width: 50%;
   font-size: 2vh;
 }
+
 .container-imagenes {
   margin: 5vh auto;
   width: 90vw;
@@ -44,12 +53,14 @@ footer p {
   scrollbar-color: rgb(78, 77, 77) rgb(143, 138, 138);
   scrollbar-width: thin;
 }
+
 .container-imagenes img {
   margin: 5px 0;
   width: 25vh;
   height: 25vh;
   padding: 0 10px;
 }
+
 .objeto h2 {
   color: #144570;
   font-weight: bold;
@@ -58,15 +69,19 @@ footer p {
 .container-carrera {
   padding: 5vh;
 }
+
 .container-carrera p {
   font-size: calc(10px + 1vh);
   margin-bottom: 30px;
+  white-space: pre-wrap;
 }
+
 .container-carrera h1 {
   font-size: calc(30px + 3vh);
   margin-bottom: 35px;
   font-weight: bold;
 }
+
 .container-carrera>img {
   margin: auto;
 }
@@ -104,4 +119,56 @@ footer p {
 .malla img {
   max-width: 800px;
   margin: auto;
+}
+
+a.navbar-brand:hover {
+  text-decoration: underline;
+}
+
+.preload-container {
+  margin: 0 auto;
+  width: 90vw;
+  padding: 16px;
+}
+
+.preload-container * {
+  margin: 1em 0;
+  background: linear-gradient(to right, #eee 10%, #e1e1e1 20%, #eee 30%);
+  background-size: 200% 50px;
+  animation: preloadAnimation 2s infinite;
+}
+
+.preload-title {
+  width: 60vw;
+  margin: auto;
+}
+
+.preload-rect {
+  height: 20vw;
+  width: 20vw;
+  max-height: 300px;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: 10vw;
+}
+
+.preload-long-rect {
+  height: 50vw;
+  width: 40vw;
+  max-width: 500px;
+  margin: auto;
+}
+
+.preload-line {
+  height: 32px;
+}
+
+@keyframes preloadAnimation {
+  from {
+    background-position: 100% 0
+  }
+
+  to {
+    background-position: -100% 0
+  }
 }

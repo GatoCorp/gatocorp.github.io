@@ -48,7 +48,6 @@ function Footer() {
   return (
     <footer>
       <p>&copy; {new Date().getFullYear()} Copyright GatoCorp</p>
-
     </footer>
   )
 }
@@ -98,42 +97,64 @@ function Home() {
   )
 }
 
-function carrera(props) {
+function Carrera(props) {
   const [datos, setDatos] = React.useState([])
-
+  const [loading, setLoading] = React.useState(true)
   React.useEffect(() => {
+    setLoading(true)
+
     fetch(`https://gatocorpapi.herokuapp.com/carrera/${props.match.params.name}`)
       .then(response => response.json())
-      .then(data => setDatos(data))
+      .then(data => setTimeout(() => {
+        setDatos(data)
+        setLoading(false)
+      }, 1500))
+    // .then(data => {
+    //   setDatos(data)
+    //   setLoading(false)
+    // })
+
   }, [props.match.params])
+  if (loading)
+    return (
+      <div class="preload-container">
+        <div class="preload-line preload-title"></div>
+        <div class="preload-rect"></div>
+        <div class="preload-line"></div>
+        <div class="preload-line"></div>
+        <div class="preload-line"></div>
+        <div class="preload-line"></div>
+        <div class="preload-long-rect"></div>
+      </div>
+    )
+  else
+    return (
+      <div class="container-carrera">
+        <h1>{datos['nombre']}</h1>
 
-  return (
-    <div class="container-carrera">
-      <h1>{datos['nombre']}</h1>
-
-      <div class="subcontainer-carrera">
-        <div class="texto">
-          <h2>OBJETIVO DE LA CARRERA</h2>
-          <p>{datos['objetivo']}</p>
+        <div class="subcontainer-carrera">
+          <div class="texto">
+            <h2>OBJETIVO DE LA CARRERA</h2>
+            <p>{datos['objetivo']}</p>
+          </div>
+          <img src={datos['logo']} />
         </div>
-        <img src={datos['logo']} />
+
+        <h2>OBJETO DE LA CARRERA</h2>
+        <p>{datos['objeto']}</p>
+
+        <h2>COMPETENCIA DEL PROFESIONAL</h2>
+        <p>{datos['competencia']}</p>
+
+        <h2>CAMPO LABORAL</h2>
+        <p>{datos['campo']}</p>
+
+        <div class="malla">
+          <h2>MALLA CURRICULAR</h2>
+          <img src={datos['malla']} />
+        </div>
       </div>
-
-      <h2>OBJETO DE LA CARRERA</h2>
-      <p>{datos['objeto']}</p>
-
-      <h2>COMPETENCIA DEL PROFESIONAL</h2>
-      <p>{datos['competencia']}</p>
-
-      <h2>CAMPO LABORAL</h2>
-      <p>{datos['campo']}</p>
-
-      <div class="malla">
-        <h2>MALLA CURRICULAR</h2>
-        <img src={datos['malla']} />
-      </div>
-    </div>
-  )
+    )
 }
 
 function App() {
@@ -145,7 +166,7 @@ function App() {
       <Router>
         <Navbar />
         <Switch>
-          <Route path="/carrera/:name" component={carrera} />
+          <Route path="/carrera/:name" component={Carrera} />
           <Route path="/" component={Home} />
         </Switch>
         <Footer />
