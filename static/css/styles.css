@@ -9,7 +9,6 @@
     transform: translate(-50%,-50%);
     box-sizing: border-box;
     padding: 150px 50px;
-    
 }
 
 .login-box .avatar {
@@ -26,6 +25,8 @@
     top: 82%;
     width: 100px;
     height: 50px;
+    font-family: sans-serif,monospace;
+    padding: 10px;
 }
 .navbar {
     padding: 0.5em 0;
@@ -44,6 +45,7 @@
     position: relative;
     top:80px;
     right: 10px;
+    padding: 10px;
 }
 .studentcontainer .form-control-plaintext{
     font-size: 20px;
@@ -115,13 +117,11 @@
     width: 450px;
     float: left;
     position: relative;
+    margin-right: 60px;
 }
-.textb > input {
-    width: max-content;
-} 
 
 .archivos > div {
-    max-width: max-content;
+    width: 450px;   
 }
 .archivos .textb {
     width: 280px;
@@ -136,7 +136,4 @@ legend {
     position: relative;
     left: 200px;
     margin-right: 120px;
-}
-.mh .dropdown-menu {
-    max-height: 100px;
 }

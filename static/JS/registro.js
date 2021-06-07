@@ -1,4 +1,5 @@
-const API = "https://gatocorpapi.herokuapp.com"
+//const API = "https://gatocorpapi.herokuapp.com"
+const API = "http://localhost:8000"
 
 function llenarSelect(data) {
     let res = document.getElementById('carrera')
@@ -24,17 +25,33 @@ function generarcodigo(data) {
     }
     return codigo
 }
-
 async function agregarEstudiante() {
     let codigos = await fetchCodigos()
     const codigo = generarcodigo(codigos)
-
     const nombre = document.getElementById('nombre').value
     const apellido = document.getElementById('apellido').value
     const ci = document.getElementById('ci').value
     const correo = document.getElementById('correo').value
     const carrera = document.getElementById('carrera').value
+    const foto = document.getElementById('imagen')
+    const certifNac = document.getElementById('CertifNac')
+    const titulo = document.getElementById('Titulo')
+    const certifMed = document.getElementById('CertifMed')
 
+    //let formdata = new FormData()
+    //formdata.append(
+    //    "codigo", codigo,
+    //    "nombre", nombre,
+    //    "apellido", apellido,
+    //    "ci", parseInt(ci),
+    //    "correo", correo,
+    //    "carrera", carrera,
+    //    "semestre", 1
+    //    foto", foto,
+    //    "certifNac" , certifNac,
+    //    "titulo", titulo , 
+    //    "certifMed", certifMed
+    //)
     let data = {
         codigo: codigo,
         nombre: nombre,
@@ -42,15 +59,19 @@ async function agregarEstudiante() {
         ci: parseInt(ci),
         correo: correo,
         carrera: carrera,
-        semestre: 1 // quitar esta hardcodeada
-
+        semestre: parseInt(1,10), // quitar esta hardcodeada
+        foto: foto.files[0],
+        certifNac : certifNac.files[0],
+        titulo : titulo.files[0], 
+        certifMed: certifMed.files[0]
     }
+    console.log(data)
     fetch(`${API}/estudiantes`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(data) 
     })
         .then(response => response.json())
         .then(data => console.log(data))
@@ -79,5 +100,6 @@ fetch(`${API}/carreras`)
 const btnenviar = document.getElementById('btnenviar')
 btnenviar.addEventListener('click', agregarEstudiante)
 
-const defaultBtn = document.getElementById("default-btn")
+const defaultBtn = document.getElementById("imagen")
 defaultBtn.addEventListener("change", agregarImagen)
+
