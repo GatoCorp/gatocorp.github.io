@@ -85,7 +85,7 @@ function Home() {
       <h1>¿Quiénes Somos?</h1>
       <p>El año 1950, como resultado de un proceso de estudios organizacionales y analíticos el Estado Mayor del Ejército de Bolivia determinó la creación de un Instituto Técnico de nivel académico, con la responsabilidad de formar oficiales del Ejército, ampliándose la oferta académica en el año 1980.</p>
       <Imagenes />
-      <div class="d-flex">
+      <div class="container-objetos">
         <Objeto imageUrl="../../assets/prestigio.png" titulo="Prestigio"
           parrafo="Somos especialistas en la formación de Ingenieros, líderes en los campos científicos y tecnológicos." />
         <Objeto imageUrl="../../assets/disciplina.png" titulo="Disciplina"

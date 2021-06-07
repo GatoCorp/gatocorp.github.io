@@ -61,6 +61,10 @@ footer p {
   padding: 0 10px;
 }
 
+.container-objetos {
+  display: flex;
+}
+
 .objeto h2 {
   color: #144570;
   font-weight: bold;
@@ -163,6 +167,11 @@ a.navbar-brand:hover {
   height: 32px;
 }
 
+@media screen and (max-width: 600px) {
+  .container-objetos {
+    flex-direction: column;
+  }
+}
 @keyframes preloadAnimation {
   from {
     background-position: 100% 0
