@@ -1,5 +1,5 @@
-//const API = "https://gatocorpapi.herokuapp.com"
-const API = "http://localhost:8000"
+const API = "https://gatocorpapi.herokuapp.com"
+//const API = "http://localhost:8000"
 
 function llenarSelect(data) {
     let res = document.getElementById('carrera')
