@@ -105,14 +105,10 @@ function Carrera(props) {
 
     fetch(`https://gatocorpapi.herokuapp.com/carrera/${props.match.params.name}`)
       .then(response => response.json())
-      .then(data => setTimeout(() => {
+      .then(data => {
         setDatos(data)
         setLoading(false)
-      }, 1500))
-    // .then(data => {
-    //   setDatos(data)
-    //   setLoading(false)
-    // })
+      })
 
   }, [props.match.params])
   if (loading)
