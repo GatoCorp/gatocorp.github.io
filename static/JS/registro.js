@@ -112,7 +112,7 @@ function handleArchivo() {
         },
         body: {
             image: file,
-            type: 'base64',
+            type: 'file',
             album: 'UmRKLyr',
             name: 'prueba-imgur',
             description: 'agregar descripcion'
