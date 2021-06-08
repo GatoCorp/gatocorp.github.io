@@ -59,10 +59,6 @@ async function generarLinkImagen(file) {
     response = JSON.parse(response)
     return response.data['url']
 }
-<<<<<<< HEAD
-
-// const defaultBtn = document.getElementById('foto')
-// defaultBtn.addEventListener('change', generarLinkImagen)
 
 async function agregarEstudiante() {
     // archivos
@@ -83,56 +79,10 @@ async function agregarEstudiante() {
         certifNac: await generarLinkImagen(certifNac),
         titulo: await generarLinkImagen(titulo),
         certifMed: await generarLinkImagen(certifMed)
-=======
-function verificarArchivo(archivo){
-    if(archivo == undefined)
-        return null
-    else return archivo
-}
-async function agregarEstudiante() {
-    let codigos = await fetchCodigos()
-    const codigo = generarcodigo(codigos)
-    const nombre = document.getElementById('nombre').value
-    const apellido = document.getElementById('apellido').value
-    const ci = document.getElementById('ci').value
-    const correo = document.getElementById('correo').value
-    const carrera = document.getElementById('carrera').value
-    const foto = document.getElementById('imagen').files[0]
-    const certifNac = document.getElementById('CertifNac').files[0]
-    const titulo = document.getElementById('Titulo').files[0]
-    const certifMed = document.getElementById('CertifMed').files[0]
-
-    //let formdata = new FormData()
-    //formdata.append(
-    //    "codigo", codigo,
-    //    "nombre", nombre,
-    //    "apellido", apellido,
-    //    "ci", parseInt(ci),
-    //    "correo", correo,
-    //    "carrera", carrera,
-    //    "semestre", 1
-    //    foto", foto,
-    //    "certifNac" , certifNac,
-    //    "titulo", titulo , 
-    //    "certifMed", certifMed
-    //)
-    let data = {
-        codigo: codigo,
-        nombre: nombre,
-        apellido: apellido,
-        ci: parseInt(ci),
-        correo: correo,
-        carrera: carrera,
-        semestre: 1, // quitar esta hardcodeada
-        foto: verificarArchivo(foto),
-        certifNac: verificarArchivo(certifNac),
-        titulo: verificarArchivo(titulo),
-        certifMed: verificarArchivo(certifMed)
->>>>>>> 56587249a9f9dd63d320c69db4a5c80a5d4d94c1
     }
 
     console.log(JSON.stringify(data, null, 4))
-    
+
     fetch(`${API}/estudiantes`, {
         method: 'POST',
         headers: {
