@@ -75,9 +75,9 @@ async function agregarEstudiante() {
         carrera: document.getElementById('carrera').value,
         semestre: 1, // la hardcodeada is real
         foto: await generarLinkImagen(foto),
-        certifNac: await generarLinkImagen(certifNac),
-        titulo: await generarLinkImagen(titulo),
-        certifMed: await generarLinkImagen(certifMed)
+        certificado_nacimiento: await generarLinkImagen(certifNac),
+        titulo_bachiller: await generarLinkImagen(titulo),
+        certificado_medico: await generarLinkImagen(certifMed)
     }
 
     console.log(JSON.stringify(data, null, 4))
