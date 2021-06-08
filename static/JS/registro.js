@@ -115,17 +115,10 @@ async function handleArchivo(e) {
     toBase64(file)
         .then(base64 => {
             console.log(base64)
-            fetch('https://api.imgur.com/3/image', {
+            fetch(`https://api.imgbb.com/1/upload?key=96966ef8138bc841dfcf76c97b15aea0&image=${base64}&expiration=600`, {
                 method: 'POST',
-                headers: {
-                    Authorization: 'Client-ID 52851f0aeb3684f',
-                },
                 body: {
-                    type: 'base64',
-                    image: base64,
-                    name: 'prueba-imgur.png',
-                    title: 'imagen server',
-                    description: 'agregar descripcion'
+                    expiration: 600
                 }
             })
                 .then(response => response.json())
