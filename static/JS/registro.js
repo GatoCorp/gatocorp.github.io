@@ -113,8 +113,8 @@ function handleArchivo() {
         body: {
             image: file,
             type: 'file',
-            album: 'UmRKLyr',
-            name: 'prueba-imgur',
+            name: 'prueba-imgur.png',
+            title: 'imagen server',
             description: 'agregar descripcion'
         }
     })
