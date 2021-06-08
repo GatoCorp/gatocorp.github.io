@@ -141,3 +141,11 @@ legend {
 .parte{
     height: 120px;
 }
+
+.alert {
+    display: none;
+}
+
+.alert-activo {
+    display: block;
+}
