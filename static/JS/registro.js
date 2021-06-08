@@ -109,7 +109,6 @@ function handleArchivo() {
         method: 'POST',
         headers: {
             Authorization: 'Client-ID 52851f0aeb3684f',
-            'Access-Control-Allow-Origin': '*'
         },
         body: {
             image: file,
