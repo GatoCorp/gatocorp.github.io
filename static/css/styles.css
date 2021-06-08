@@ -76,7 +76,7 @@
     float: left;
     margin-left: 40px;
     margin-right: 40px;
-    margin-top: 50px;
+    margin-top: 80px;
 }
 .photocontainer .wrapper{
     position: relative;
@@ -136,4 +136,16 @@ legend {
     position: relative;
     left: 200px;
     margin-right: 120px;
+}
+
+.parte{
+    height: 120px;
+}
+
+.alert {
+    display: none;
+}
+
+.alert-activo {
+    display: block;
 }
