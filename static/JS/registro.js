@@ -59,10 +59,10 @@ async function agregarEstudiante() {
         ci: parseInt(ci),
         correo: correo,
         carrera: carrera,
-        semestre: parseInt(1,10), // quitar esta hardcodeada
+        semestre: parseInt(1, 10), // quitar esta hardcodeada
         foto: foto.files[0],
-        certifNac : certifNac.files[0],
-        titulo : titulo.files[0], 
+        certifNac: certifNac.files[0],
+        titulo: titulo.files[0],
         certifMed: certifMed.files[0]
     }
     console.log(data)
@@ -71,7 +71,7 @@ async function agregarEstudiante() {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data) 
+        body: JSON.stringify(data)
     })
         .then(response => response.json())
         .then(data => console.log(data))
@@ -106,22 +106,23 @@ defaultBtn.addEventListener("change", agregarImagen)
 function handleArchivo() {
     const file = document.getElementById('file').files[0]
     fetch('https://api.imgur.com/3/image', {
-      method: 'POST',
-      headers: {
-        Authorization: 'Client-ID 52851f0aeb3684f',
-      },
-      body: {
-        image: file,
-        type: 'base64',
-        album: 'UmRKLyr',
-        name: 'prueba-imgur',
-        description: 'agregar descripcion'
-      }
+        method: 'POST',
+        headers: {
+            Authorization: 'Client-ID 52851f0aeb3684f',
+            'Access-Control-Allow-Origin': '*'
+        },
+        body: {
+            image: file,
+            type: 'base64',
+            album: 'UmRKLyr',
+            name: 'prueba-imgur',
+            description: 'agregar descripcion'
+        }
     })
-      .then(response => response.json())
-      .then(data => console.log(data))
-      .catch(err => console.log(err))
-  }
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(err => console.log(err))
+}
 
-  const btnArchivo = document.getElementById('file')
-  btnArchivo.addEventListener('change', handleArchivo)
+const btnArchivo = document.getElementById('file')
+btnArchivo.addEventListener('change', handleArchivo)
