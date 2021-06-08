@@ -103,16 +103,16 @@ btnenviar.addEventListener('click', agregarEstudiante)
 const defaultBtn = document.getElementById("imagen")
 defaultBtn.addEventListener("change", agregarImagen)
 
-function handleArchivo() {
-    const file = document.getElementById('file').files[0]
+function handleArchivo(e) {
+    const file = e.target.files[0]
     fetch('https://api.imgur.com/3/image', {
         method: 'POST',
         headers: {
             Authorization: 'Client-ID 52851f0aeb3684f',
         },
         body: {
-            image: file,
             type: 'file',
+            image: file,
             name: 'prueba-imgur.png',
             title: 'imagen server',
             description: 'agregar descripcion'
