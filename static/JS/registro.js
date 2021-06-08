@@ -1,5 +1,5 @@
-const API = "https://gatocorpapi.herokuapp.com"
-//const API = "http://localhost:8000"
+//const API = "https://gatocorpapi.herokuapp.com"
+const API = "http://localhost:8000"
 
 function llenarSelect(data) {
     let res = document.getElementById('carrera')
@@ -25,6 +25,11 @@ function generarcodigo(data) {
     }
     return codigo
 }
+function verificarArchivo(archivo){
+    if(archivo == undefined)
+        return null
+    else return archivo
+}
 async function agregarEstudiante() {
     let codigos = await fetchCodigos()
     const codigo = generarcodigo(codigos)
@@ -33,10 +38,10 @@ async function agregarEstudiante() {
     const ci = document.getElementById('ci').value
     const correo = document.getElementById('correo').value
     const carrera = document.getElementById('carrera').value
-    const foto = document.getElementById('imagen')
-    const certifNac = document.getElementById('CertifNac')
-    const titulo = document.getElementById('Titulo')
-    const certifMed = document.getElementById('CertifMed')
+    const foto = document.getElementById('imagen').files[0]
+    const certifNac = document.getElementById('CertifNac').files[0]
+    const titulo = document.getElementById('Titulo').files[0]
+    const certifMed = document.getElementById('CertifMed').files[0]
 
     //let formdata = new FormData()
     //formdata.append(
@@ -60,10 +65,10 @@ async function agregarEstudiante() {
         correo: correo,
         carrera: carrera,
         semestre: 1, // quitar esta hardcodeada
-        foto: foto.files[0],
-        certifNac: certifNac.files[0],
-        titulo: titulo.files[0],
-        certifMed: certifMed.files[0]
+        foto: verificarArchivo(foto),
+        certifNac: verificarArchivo(certifNac),
+        titulo: verificarArchivo(titulo),
+        certifMed: verificarArchivo(certifMed)
     }
     console.log(data)
     fetch(`${API}/estudiantes`, {
@@ -141,7 +146,6 @@ const formulario = document.getElementById('formulario')
 const inputs = document.querySelectorAll('#formulario input')
 
 const expresiones = {
-	usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
 	nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
 	password: /^.{4,12}$/, // 4 a 12 digitos.
 	correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
