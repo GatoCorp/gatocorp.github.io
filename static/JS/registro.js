@@ -1,5 +1,5 @@
-//const API = "https://gatocorpapi.herokuapp.com"
-const API = "http://localhost:8000"
+const API = "https://gatocorpapi.herokuapp.com"
+// const API = "http://localhost:8000"
 
 function llenarSelect(data) {
     let res = document.getElementById('carrera')
@@ -27,7 +27,6 @@ async function generarNuevoCodigo() {
     while (true) {
         codigoNuevo = generarCodigo()
         existeOtro = false
-
         for (i in codigos) {
             if (i.codigo == codigoNuevo) {
                 existeOtro = true
@@ -178,8 +177,7 @@ document.getElementById('foto').addEventListener('change', (e) => {
     if (file) {
         const reader = new FileReader()
         reader.onload = function () {
-            const result = reader.result
-            img.src = result
+            img.src = reader.result
             document.querySelector('.content').style.display = 'none'
         }
         reader.readAsDataURL(file)
