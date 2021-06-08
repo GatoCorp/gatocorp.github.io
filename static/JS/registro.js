@@ -5,67 +5,87 @@ function llenarSelect(data) {
     let res = document.getElementById('carrera')
     res.innerHTML = ''
     for (let item of data)
-        res.innerHTML += `<option>${item.nombre_completo}</option>`
+        res.innerHTML += `<option value="${item.nombre}">${item.nombre_completo}</option>`
 }
 
 async function fetchCodigos() {
-    const response = await fetch(`${API}/estudiantes`)
+    const response = await fetch(`${API}/codigos_aux`)
     const datos = await response.json()
     return datos
 }
 
-// cambiar esto xd
-function generarcodigo(data) {
+function generarCodigo() {
     const cod1 = Math.floor((Math.random() * (9000 - 7000 + 1)) + 7000)
     const cod2 = Math.floor((Math.random() * (9 - 1 + 1)) + 1)
-    const codigo = `S${cod1}-${cod2}`
-    for (i in data) {
-        if (i.codigo == codigo)
-            return generarcodigo(data)
-    }
-    return codigo
+    return `S${cod1}-${cod2}`
 }
-async function agregarEstudiante() {
-    let codigos = await fetchCodigos()
-    const codigo = generarcodigo(codigos)
-    const nombre = document.getElementById('nombre').value
-    const apellido = document.getElementById('apellido').value
-    const ci = document.getElementById('ci').value
-    const correo = document.getElementById('correo').value
-    const carrera = document.getElementById('carrera').value
-    const foto = document.getElementById('imagen')
-    const certifNac = document.getElementById('CertifNac')
-    const titulo = document.getElementById('Titulo')
-    const certifMed = document.getElementById('CertifMed')
 
-    //let formdata = new FormData()
-    //formdata.append(
-    //    "codigo", codigo,
-    //    "nombre", nombre,
-    //    "apellido", apellido,
-    //    "ci", parseInt(ci),
-    //    "correo", correo,
-    //    "carrera", carrera,
-    //    "semestre", 1
-    //    foto", foto,
-    //    "certifNac" , certifNac,
-    //    "titulo", titulo , 
-    //    "certifMed", certifMed
-    //)
-    let data = {
-        codigo: codigo,
-        nombre: nombre,
-        apellido: apellido,
-        ci: parseInt(ci),
-        correo: correo,
-        carrera: carrera,
-        semestre: 1, // quitar esta hardcodeada
-        foto: foto.files[0],
-        certifNac: certifNac.files[0],
-        titulo: titulo.files[0],
-        certifMed: certifMed.files[0]
+async function generarNuevoCodigo() {
+    let codigos = await fetchCodigos()
+    let codigoNuevo
+    let existeOtro
+    while (true) {
+        codigoNuevo = generarCodigo()
+        existeOtro = false
+
+        for (i in codigos) {
+            if (i.codigo == codigoNuevo) {
+                existeOtro = true
+                break
+            }
+        }
+        if (existeOtro)
+            continue
+        else
+            return codigoNuevo
     }
-    console.log(data)
+}
+
+async function generarLinkImagen(file) {
+    let data = new FormData()
+    data.append('image', file)
+    data.append('expiration', 60) // 3600 seg = 1 hora
+    let settings = {
+        "url": "https://api.imgbb.com/1/upload?key=96966ef8138bc841dfcf76c97b15aea0",
+        "method": "POST",
+        "timeout": 0,
+        "processData": false,
+        "mimeType": "multipart/form-data",
+        "contentType": false,
+        "data": data
+    }
+
+    let response = await $.ajax(settings)
+    response = JSON.parse(response)
+    return response.data['url']
+}
+
+// const defaultBtn = document.getElementById('foto')
+// defaultBtn.addEventListener('change', generarLinkImagen)
+
+async function agregarEstudiante() {
+    // archivos
+    let foto = document.getElementById('foto').files[0]
+    let certifNac = document.getElementById('certifNac').files[0]
+    let titulo = document.getElementById('titulo').files[0]
+    let certifMed = document.getElementById('certifMed').files[0]
+
+    let data = {
+        codigo: await generarNuevoCodigo(),
+        nombre: document.getElementById('nombre').value,
+        apellido: document.getElementById('apellido').value,
+        ci: parseInt(document.getElementById('ci').value),
+        correo: document.getElementById('correo').value,
+        carrera: document.getElementById('carrera').value,
+        semestre: 1, // la hardcodeada is real
+        foto: await generarLinkImagen(foto),
+        certifNac: await generarLinkImagen(certifNac),
+        titulo: await generarLinkImagen(titulo),
+        certifMed: await generarLinkImagen(certifMed)
+    }
+
+    console.log(JSON.stringify(data, null, 4))
+    
     fetch(`${API}/estudiantes`, {
         method: 'POST',
         headers: {
@@ -78,67 +98,16 @@ async function agregarEstudiante() {
         .catch(err => console.log(err))
 }
 
-function agregarImagen() {
-    const img = document.querySelector("img")
-    const file = this.files[0]
-    if (file) {
-        const reader = new FileReader()
-        reader.onload = function () {
-            const result = reader.result
-            img.src = result
-            document.querySelector(".wrapper").classList.add("active")
-        }
-        reader.readAsDataURL(file)
-    }
-}
-
-fetch(`${API}/carreras`)
-    .then(response => response.json())
-    .then(data => llenarSelect(data))
-    .catch(err => console.log(err))
-
-const defaultBtn = document.getElementById("imagen")
-defaultBtn.addEventListener("change", agregarImagen)
-
-const toBase64 = file => new Promise((resolve, reject) => {
-    const reader = new FileReader()
-    reader.readAsDataURL(file)
-    reader.onload = () => resolve(reader.result)
-    reader.onerror = error => reject(error)
-})
-
-async function handleArchivo(e) {
-    const file = e.target.files[0]
-    toBase64(file)
-        .then(base64 => {
-            console.log(base64)
-            fetch(`https://api.imgbb.com/1/upload?key=96966ef8138bc841dfcf76c97b15aea0&image=${base64}&expiration=600`, {
-                method: 'POST',
-                body: {
-                    expiration: 600
-                }
-            })
-                .then(response => response.json())
-                .then(data => console.log(data))
-                .catch(err => console.log(err))
-        })
-        .catch(e => console.log(e))
-
-}
-
-//const btnArchivo = document.getElementById('file')
-//btnArchivo.addEventListener('change', handleArchivo)
-
-//Validacion del formulario
-const formulario = document.getElementById('formulario')
+/**
+ * Validación de los campos del formulario
+ */
 const inputs = document.querySelectorAll('#formulario input')
-
 const expresiones = {
-	usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
-	nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
-	password: /^.{4,12}$/, // 4 a 12 digitos.
-	correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-	telefono: /^\d{7,14}$/ // 7 a 14 numeros.
+    usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
+    nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
+    password: /^.{4,12}$/, // 4 a 12 digitos.
+    correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+    telefono: /^\d{7,14}$/ // 7 a 14 numeros.
 }
 
 const campos = {
@@ -149,23 +118,24 @@ const campos = {
 }
 
 const validarFormulario = (e) => {
-    switch(e.target.id) {
+    switch (e.target.id) {
         case "nombre":
-            validarCampo(expresiones.nombre,e.target,'nombre')
-        break
+            validarCampo(expresiones.nombre, e.target, 'nombre')
+            break
         case "apellido":
-            validarCampo(expresiones.nombre,e.target,'apellido')
-        break
+            validarCampo(expresiones.nombre, e.target, 'apellido')
+            break
         case "ci":
-            validarCampo(expresiones.telefono,e.target,'ci')
-        break
+            validarCampo(expresiones.telefono, e.target, 'ci')
+            break
         case "correo":
-            validarCampo(expresiones.correo,e.target,'correo')
-        break
+            validarCampo(expresiones.correo, e.target, 'correo')
+            break
     }
 }
-const validarCampo = (expresion,input,campo) => {
-    if (expresion.test(input.value)){
+
+const validarCampo = (expresion, input, campo) => {
+    if (expresion.test(input.value)) {
         document.getElementById(`div__${campo}`).classList.remove('has-danger')
         document.getElementById(input.id).classList.remove('is-invalid')
         document.getElementById(`div__${campo}`).classList.add('has-success')
@@ -179,18 +149,42 @@ const validarCampo = (expresion,input,campo) => {
         campos[campo] = false
     }
 }
-inputs.forEach((input)=>{
+
+inputs.forEach(input => {
     input.addEventListener('keyup', validarFormulario)
     input.addEventListener('blur', validarFormulario)
 })
 
+/**
+ * Envío del formulario
+ */
+const formulario = document.getElementById('formulario')
 formulario.addEventListener('submit', async (e) => {
     e.preventDefault()
 
-    if(campos.nombre && campos.apellido && campos.ci && campos.correo){
+    if (campos.nombre && campos.apellido && campos.ci && campos.correo) {
         await agregarEstudiante()
-        formulario.reset() 
-    }else {
+        formulario.reset()
+    } else {
         document.getElementById('alerta').classList.add('alert-activo')
+    }
+})
+
+fetch(`${API}/carreras_aux`)
+    .then(response => response.json())
+    .then(data => llenarSelect(data))
+    .catch(err => console.log(err))
+
+document.getElementById('foto').addEventListener('change', (e) => {
+    const img = document.getElementById('img')
+    const file = e.target.files[0]
+    if (file) {
+        const reader = new FileReader()
+        reader.onload = function () {
+            const result = reader.result
+            img.src = result
+            document.querySelector('.content').style.display = 'none'
+        }
+        reader.readAsDataURL(file)
     }
 })
