@@ -3,7 +3,7 @@ function Navbar() {
   const [carreras, setCarreras] = React.useState([])
 
   React.useEffect(() => {
-    fetch('https://gatocorpapi.herokuapp.com/carrera_aux')
+    fetch('https://gatocorpapi.herokuapp.com/carreras_aux')
       .then(response => response.json())
       .then(data => setCarreras(data))
   }, [])
