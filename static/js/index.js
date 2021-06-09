@@ -111,6 +111,7 @@ function Carrera(props) {
       })
 
   }, [props.match.params])
+  
   if (loading)
     return (
       <div class="preload-container">
