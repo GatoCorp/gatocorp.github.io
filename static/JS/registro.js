@@ -43,7 +43,7 @@ async function generarNuevoCodigo() {
 async function generarLinkImagen(file) {
     let data = new FormData()
     data.append('image', file)
-    data.append('expiration', 60) // 3600 seg = 1 hora
+    data.append('expiration', 3600) // 3600 seg = 1 hora
     let settings = {
         "url": "https://api.imgbb.com/1/upload?key=96966ef8138bc841dfcf76c97b15aea0",
         "method": "POST",
@@ -131,17 +131,19 @@ const validarFormulario = (e) => {
 }
 
 const validarCampo = (expresion, input, campo) => {
+    const elemento1 = document.getElementById(`div__${campo}`)
+    const elemento2 = document.getElementById(input.id)
     if (expresion.test(input.value)) {
-        document.getElementById(`div__${campo}`).classList.remove('has-danger')
-        document.getElementById(input.id).classList.remove('is-invalid')
-        document.getElementById(`div__${campo}`).classList.add('has-success')
-        document.getElementById(input.id).classList.add('is-valid')
+        elemento1.classList.remove('has-danger')
+        elemento1.classList.add('has-success')
+        elemento2.classList.remove('is-invalid')
+        elemento2.classList.add('is-valid')
         campos[campo] = true
     } else {
-        document.getElementById(`div__${campo}`).classList.add('has-danger')
-        document.getElementById(input.id).classList.add('is-invalid')
-        document.getElementById(`div__${campo}`).classList.remove('has-success')
-        document.getElementById(input.id).classList.remove('is-valid')
+        elemento1.classList.add('has-danger')
+        elemento1.classList.remove('has-success')
+        elemento2.classList.add('is-invalid')
+        elemento2.classList.remove('is-valid')
         campos[campo] = false
     }
 }
