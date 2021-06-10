@@ -40,63 +40,82 @@ async function generarNuevoCodigo() {
     }
 }
 
-async function generarLinkImagen(file) {
+function generarLinkImagen(file) {
     let data = new FormData()
     data.append('image', file)
-    data.append('expiration', 3600) // 3600 seg = 1 hora
+    data.append('expiration', 120) // 3600 seg = 1 hora
     let settings = {
-        "url": "https://api.imgbb.com/1/upload?key=96966ef8138bc841dfcf76c97b15aea0",
-        "method": "POST",
-        "timeout": 0,
-        "processData": false,
-        "mimeType": "multipart/form-data",
-        "contentType": false,
-        "data": data
+        url: "https://api.imgbb.com/1/upload?key=96966ef8138bc841dfcf76c97b15aea0",
+        method: "POST",
+        timeout: 0,
+        processData: false,
+        mimeType: "multipart/form-data",
+        contentType: false,
+        data: data
     }
 
-    let response = await $.ajax(settings)
-    response = JSON.parse(response)
-    return response.data['url']
+    return new Promise((resolve, reject) => {
+        $.ajax(settings).then(response => {
+            response = JSON.parse(response)
+            resolve(response.data['url'])
+        })
+    })
+    // let response = await $.ajax(settings)
+    // response = JSON.parse(response)
+    // return response.data['url']
 }
 
-async function agregarEstudiante() {
-    // archivos
-    let foto = document.getElementById('foto').files[0]
-    let certifNac = document.getElementById('certifNac').files[0]
-    let titulo = document.getElementById('titulo').files[0]
-    let certifMed = document.getElementById('certifMed').files[0]
+const getArchivoById = (id) => document.getElementById(id).files[0]
+function agregarEstudiante() {
+    // aqui leo los archivos
+    let foto = getArchivoById('foto')
+    let certifNac = getArchivoById('certifNac')
+    let titulo = getArchivoById('titulo')
+    let certifMed = getArchivoById('certifMed')
+    //  y genero los links de imagen simultaneamente
+    let p1 = generarLinkImagen(foto)
+    let p2 = generarLinkImagen(certifNac)
+    let p3 = generarLinkImagen(titulo)
+    let p4 = generarLinkImagen(certifMed)
 
-    let data = {
-        codigo: await generarNuevoCodigo(),
-        nombre: document.getElementById('nombre').value,
-        apellido: document.getElementById('apellido').value,
-        ci: parseInt(document.getElementById('ci').value),
-        correo: document.getElementById('correo').value,
-        carrera: document.getElementById('carrera').value,
-        semestre: 1, // la hardcodeada is real
-        foto: await generarLinkImagen(foto),
-        certificado_nacimiento: await generarLinkImagen(certifNac),
-        titulo_bachiller: await generarLinkImagen(titulo),
-        certificado_medico: await generarLinkImagen(certifMed)
-    }
+    let p5 = generarNuevoCodigo()
+    // una vez tenga todos los links y el codigo de estudiante
+    Promise.all([p1, p2, p3, p4, p5])
+        .then(values => {
+            let data = {
+                codigo: values[4],
+                nombre: document.getElementById('nombre').value,
+                apellido: document.getElementById('apellido').value,
+                ci: parseInt(document.getElementById('ci').value),
+                correo: document.getElementById('correo').value,
+                carrera: document.getElementById('carrera').value,
+                semestre: 1, // la hardcodeada is real
+                foto: values[0],
+                certificado_nacimiento: values[1],
+                titulo_bachiller: values[2],
+                certificado_medico: values[3]
+            }
 
-    console.log(JSON.stringify(data, null, 4))
+            console.log(JSON.stringify(data, null, 4))
 
-    fetch(`${API}/estudiantes`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    })
-        .then(response => response.json())
-        .then(data => console.log(data))
-        .catch(err => console.log(err))
+            fetch(`${API}/estudiantes`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => response.json())
+                .then(data => console.log(data))
+                .catch(error => console.log(error))
+        })
+        .catch(error => console.log(error))
 }
 
 /**
  * Validación de los campos del formulario
  */
+
 const inputs = document.querySelectorAll('#formulario input')
 const expresiones = {
     usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
@@ -112,6 +131,8 @@ const campos = {
     ci: false,
     correo: false
 }
+
+const todosLosCamposSonValidos = () => (campos.nombre && campos.apellido && campos.ci && campos.correo)
 
 const validarFormulario = (e) => {
     switch (e.target.id) {
@@ -153,20 +174,22 @@ inputs.forEach(input => {
     input.addEventListener('blur', validarFormulario)
 })
 
-/**
- * Envío del formulario
- */
-const formulario = document.getElementById('formulario')
-formulario.addEventListener('submit', async (e) => {
-    e.preventDefault()
+function tengoTodosLosArchivos() {
+    let foto = getArchivoById('foto')
+    let certifNac = getArchivoById('certifNac')
+    let titulo = getArchivoById('titulo')
+    let certifMed = getArchivoById('certifMed')
+    // esto retorna true si existen los 4 archivos
+    return (foto && certifNac && titulo && certifMed)
+}
 
-    if (campos.nombre && campos.apellido && campos.ci && campos.correo) {
-        await agregarEstudiante()
-        formulario.reset()
-    } else {
-        document.getElementById('alerta').classList.add('alert-activo')
-    }
-})
+function mostrarAlertError() {
+    document.getElementById('alerta').classList.add('alert-activo')
+    window.scrollTo(0, 0)
+}
+/**
+ * Acciones globales o que se ejecutan tras cargar la página
+ */
 
 fetch(`${API}/carreras_aux`)
     .then(response => response.json())
@@ -183,5 +206,17 @@ document.getElementById('foto').addEventListener('change', (e) => {
             document.querySelector('.content').style.display = 'none'
         }
         reader.readAsDataURL(file)
+    }
+})
+
+// envio del formulario
+document.getElementById('formulario').addEventListener('submit', async (e) => {
+    e.preventDefault()
+
+    if (todosLosCamposSonValidos() && tengoTodosLosArchivos()) {
+        console.log('registrando estudiante...')
+        // agregarEstudiante()
+    } else {
+        mostrarAlertError()
     }
 })
