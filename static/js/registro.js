@@ -187,6 +187,13 @@ function mostrarAlertError() {
     document.getElementById('alerta').classList.add('alert-activo')
     window.scrollTo(0, 0)
 }
+//Cerrar mensaje de error
+document.getElementById('alert-button').addEventListener('click', () => {
+    console.log('click')
+    console.log(document.getElementById('alerta').classList)
+    document.getElementById('alerta').classList.remove('alert-activo')
+})
+
 /**
  * Acciones globales o que se ejecutan tras cargar la página
  */
@@ -195,6 +202,7 @@ fetch(`${API}/carreras_aux`)
     .then(response => response.json())
     .then(data => llenarSelect(data))
     .catch(err => console.log(err))
+
 
 document.getElementById('foto').addEventListener('change', (e) => {
     const img = document.getElementById('img')
@@ -210,7 +218,7 @@ document.getElementById('foto').addEventListener('change', (e) => {
 })
 
 // envio del formulario
-document.getElementById('formulario').addEventListener('submit', async (e) => {
+document.getElementById('formulario').addEventListener('submit', (e) => {
     e.preventDefault()
 
     if (todosLosCamposSonValidos() && tengoTodosLosArchivos()) {
