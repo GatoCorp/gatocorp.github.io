@@ -185,3 +185,7 @@ document.getElementById('foto').addEventListener('change', (e) => {
         reader.readAsDataURL(file)
     }
 })
+
+//Cerrar mensaje de error
+document.getElementById('alerta').addEventListener('click',(e)=> 
+e.currentTarget.classList.remove('alert-activo'))
