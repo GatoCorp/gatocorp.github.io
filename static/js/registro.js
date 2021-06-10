@@ -67,6 +67,8 @@ function generarLinkImagen(file) {
 
 const getArchivoById = (id) => document.getElementById(id).files[0]
 function agregarEstudiante() {
+    mostrarModal()
+
     // aqui leo los archivos
     let foto = getArchivoById('foto')
     let certifNac = getArchivoById('certifNac')
@@ -106,7 +108,12 @@ function agregarEstudiante() {
                 body: JSON.stringify(data)
             })
                 .then(response => response.json())
-                .then(data => console.log(data))
+                .then(data => {
+                    // aqui ya tengo la respuesta del servidor en JSON
+                    cambiarModal()
+                    console.log(data)
+                    document.getElementById('formulario').reset()
+                })
                 .catch(error => console.log(error))
         })
         .catch(error => console.log(error))
@@ -150,7 +157,7 @@ const validarFormulario = (e) => {
             break
     }
 }
-
+// document.getElementById('texto-modal').innerHTML = 'cuisaaa'
 const validarCampo = (expresion, input, campo) => {
     const elemento1 = document.getElementById(`div__${campo}`)
     const elemento2 = document.getElementById(input.id)
@@ -187,12 +194,19 @@ function mostrarAlertError() {
     document.getElementById('alerta').classList.add('alert-activo')
     window.scrollTo(0, 0)
 }
-//Cerrar mensaje de error
-document.getElementById('alert-button').addEventListener('click', (e) => {
-    e.preventDefault()
-    document.getElementById('alerta').classList.remove('alert-activo')
-})
 
+function mostrarModal() {
+    document.getElementById('modal').style.display = 'block'
+    document.getElementById('modal-loading').style.display = 'block'
+    document.getElementById('texto-modal').innerHTML = 'Cargando datos al sistema...'
+    document.getElementById('modal-loaded').style.display = 'none'
+}
+
+function cambiarModal() {
+    document.getElementById('modal-loading').style.display = 'none'
+    document.getElementById('texto-modal').innerHTML = 'Se cargo su información correctamente'
+    document.getElementById('modal-loaded').style.display = 'block'
+}
 /**
  * Acciones globales o que se ejecutan tras cargar la página
  */
@@ -202,7 +216,18 @@ fetch(`${API}/carreras_aux`)
     .then(data => llenarSelect(data))
     .catch(err => console.log(err))
 
+// cerrar mensaje de error
+document.getElementById('alert-button').addEventListener('click', (e) => {
+    e.preventDefault() // bugaso
+    document.getElementById('alerta').classList.remove('alert-activo')
+})
 
+// cerrar modal
+document.getElementById('modal-close').addEventListener('click', () => {
+    document.getElementById('modal').style.display = 'none'
+})
+
+// cambiar la imagen y quitar el placeholder
 document.getElementById('foto').addEventListener('change', (e) => {
     const img = document.getElementById('img')
     const file = e.target.files[0]
@@ -221,8 +246,8 @@ document.getElementById('formulario').addEventListener('submit', (e) => {
     e.preventDefault()
 
     if (todosLosCamposSonValidos() && tengoTodosLosArchivos()) {
-        console.log('registrando estudiante...')
-        // agregarEstudiante()
+        document.getElementById('alerta').classList.remove('alert-activo') // pa no pelarle
+        agregarEstudiante()
     } else {
         mostrarAlertError()
     }

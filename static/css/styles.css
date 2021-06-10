@@ -77,7 +77,7 @@
     float: left;
     margin-left: 40px;
     margin-right: 40px;
-    margin-top: 80px;
+    margin-top: 100px;
 }
 .photocontainer .wrapper{
     position: relative;
@@ -144,9 +144,34 @@ legend {
 }
 
 .alert {
+    margin: 10px;
+    box-shadow: 4px 4px 2px 1px rgba(0, 0, 0, 0.5);
     display: none;
 }
 
 .alert-activo {
     display: block;
+}
+
+.modal {
+    padding-top: 20%;
+    background: #6d757c75;
+}
+.modal-body {
+    display: flex;
+}
+.modal-body p {
+    padding: 0 1em;
+}
+.spin {
+    animation: spin 2.5s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
