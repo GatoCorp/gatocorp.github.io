@@ -190,8 +190,6 @@ function mostrarAlertError() {
 //Cerrar mensaje de error
 document.getElementById('alert-button').addEventListener('click', (e) => {
     e.preventDefault()
-    console.log('click')
-    console.log(document.getElementById('alerta').classList)
     document.getElementById('alerta').classList.remove('alert-activo')
 })
 
