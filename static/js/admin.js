@@ -66,12 +66,17 @@ function Dashboard() {
   const [carreras, setCarreras] = React.useState([])
   const [carreraBuscada, setCarreraBuscada] = React.useState('todas')
   const [tabla, setTabla] = React.useState([])
+  const [registros, setRegistros] = React.useState([])
 
   // esto se ejecuta solo una vez
   React.useEffect(() => {
     fetch('https://gatocorpapi.herokuapp.com/carreras_aux')
       .then(response => response.json())
       .then(data => setCarreras(data))
+
+    fetch('https://gatocorpapi.herokuapp.com/registros')
+      .then(response => response.json())
+      .then(data => setRegistros(data))
   }, [])
 
   // esto se ejecuta cada vez que cambian las variables
@@ -92,7 +97,7 @@ function Dashboard() {
     <React.Fragment>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-          <span class="dashboard-title">Reportes y Registros Gestión I-2021</span>
+          <span class="dashboard-title">Estudiantes y Registros Gestión I-2021</span>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03"
             aria-controls="navbarColor03" aria-expanded="true" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -122,6 +127,7 @@ function Dashboard() {
           </div>
         </div>
       </nav >
+      <h2 class="table-title">Estudiantes</h2>
       <div class="container-tabla">
         <table class="table table-hover">
           <thead>
@@ -168,6 +174,31 @@ function Dashboard() {
           </tbody>
         </table>
       </div>
+      <h2 class="table-title">Registros</h2>
+      <div class="container-tabla">
+        <table class="table table-hover">
+          <thead>
+            <tr class="table-dark">
+              <th>id</th>
+              <th>Código de Estudiante</th>
+              <th>Fecha de Registro</th>
+              <th>Hora de Registro</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              registros.map((fila) => (
+                <tr>
+                  <td> {fila['id']} </td>
+                  <td> {fila['codigo_estudiante']} </td>
+                  <td> {fila['fecha']} </td>
+                  <td> {fila['hora']} </td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
     </React.Fragment>
   )
 }
@@ -181,9 +212,9 @@ function App() {
       <Router>
         <Switch>
           {/* la hardodeada is real */}
-          {/* <Route path="/emi/admin/dashboard" component={Dashboard} /> */}
-          {/* <Route path="/" component={Login} /> */}
-          <Route path="/" component={Dashboard} />
+          <Route path="/emi/admin/dashboard" component={Dashboard} />
+          <Route path="/" component={Login} />
+          {/* <Route path="/" component={Dashboard} /> */}
         </Switch>
       </Router>
     </React.Fragment>

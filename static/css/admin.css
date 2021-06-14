@@ -109,3 +109,7 @@ button:hover {
   overflow: auto;
   border: 2px solid black;
 }
+.table-title {
+  text-align: center;
+  margin-top: 2em;
+}
