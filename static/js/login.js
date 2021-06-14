@@ -18,7 +18,9 @@ async function verificar(){
             document.getElementById('alerta').classList.add('alert-activo')
         }
         else {
-            window.location.replace('student.html')
+            document.cookie = "codigo=;max-age=0;"
+            document.cookie = `${codEst}; path=student.html;`
+            window.location.href = 'student.html'
         }
     }catch{
         document.getElementById('alerta').classList.add('alert-activo')
@@ -30,3 +32,4 @@ document.getElementById('alert-button').addEventListener('click', (e) => {
     e.preventDefault() // bugaso
     document.getElementById('alerta').classList.remove('alert-activo')
 })
+

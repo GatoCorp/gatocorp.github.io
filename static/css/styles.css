@@ -53,7 +53,6 @@
     position: relative;
     right: 10px;
     top: -10px;
-    text-decoration: underline;
 }
 .avatarstudent{
     width: 250px;
@@ -147,6 +146,7 @@ legend {
     margin: 10px;
     box-shadow: 4px 4px 2px 1px rgba(0, 0, 0, 0.5);
     display: none;
+    text-align: center;
 }
 
 .alert-activo {

@@ -1,11 +1,12 @@
 const API = 'http://localhost:8000'
+const codigo = document.cookie
 document.addEventListener('DOMContentLoaded',async function(){
-    await fetch(`${API}/estudiantes/S8419-4`)
+    await fetch(`${API}/estudiantes/${codigo}`)
     .then(response => response.json())
     .then(data => {        
         console.log(data)
         document.getElementById('codigo').value = data[0].codigo
-        document.getElementById('nombre').value = data[0].nombre
+        document.getElementById('nombre').value = `${data[0].nombre} ${data[0].apellido}`
         document.getElementById('carrera').value = data[0].carrera
         document.getElementById('semestre').value = data[0].semestre
         document.getElementById('correo').value = data[0].correo
