@@ -19,7 +19,7 @@ function Navbar() {
         <div class="navbar-collapse collapse" id="navbarColor03">
           <ul class="navbar-nav me-auto">
             <li class="nav-item">
-              <a class="nav-link" href="../../emi/index.html">Inscripciones</a>
+              <a class="nav-link" href="../../emi/registro.html">Inscripciones</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="../../emi/login.html">Perfil de estudiante</a>
