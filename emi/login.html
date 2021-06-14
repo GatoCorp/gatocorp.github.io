@@ -31,25 +31,31 @@
       </div>
     </div>
   </nav>
+  <div class="alert alert-dismissible alert-danger" id="alerta">
+    <button type="button" class="btn-close" id="alert-button"></button>
+    <strong>Oh snap!</strong> <a href="#" class="alert-link">Change a few things up</a> and try submitting again.
+  </div>
   <div class='login-box'>
     <img class="avatar" src="../assets/descarga.png" alt="Logo Emi">
+    
     <form>
       <!--Username-->
       <div class="form-group">
         <label class="col-form-label mt-4" for="inputDefault">Codigo</label>
-        <input type="text" class="form-control" placeholder="Codigo" id="inputDefault">
+        <input type="text" class="form-control" placeholder="Codigo" id="codigo">
       </div>
       <!--Passworrd-->
       <div class="form-group">
         <label for="exampleInputPassword1" class="form-label mt-4">Contraseña</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña">
+        <input type="password" class="form-control" id="contrasena" placeholder="Contraseña">
       </div>
 
-      <a type="button" class="btn btn-light login" value="Ingresar" href="./student.html">Ingresar</a>
+      <button type="button" class="btn btn-light login"  id="login">Ingresar</a>
     </form>
+    
   </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-
+<script src="../static/js/login.js"></script>
 </html>
