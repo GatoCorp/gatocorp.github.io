@@ -43,7 +43,7 @@ async function generarNuevoCodigo() {
 function generarLinkImagen(file) {
     let data = new FormData()
     data.append('image', file)
-    data.append('expiration', 120) // 3600 seg = 1 hora
+    data.append('expiration', 604800) // 3600 seg = 1 hora, 604800 seg = 1 semana
     let settings = {
         url: "https://api.imgbb.com/1/upload?key=96966ef8138bc841dfcf76c97b15aea0",
         method: "POST",
