@@ -37,6 +37,9 @@ function Navbar() {
                 }
               </div>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../../emi/admin.html">Usuarios del Sistema</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -111,7 +114,7 @@ function Carrera(props) {
       })
 
   }, [props.match.params])
-  
+
   if (loading)
     return (
       <div class="preload-container">
