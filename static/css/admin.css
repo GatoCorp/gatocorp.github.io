@@ -33,7 +33,7 @@ header {
 }
 .login {
   margin: auto;
-  margin-top: 20vh;
+  margin-top: 10vh;
   background-color: var(--blue);
   padding: 1em;
   border-radius: 1em;
@@ -64,4 +64,30 @@ button:hover {
   background-color: var(--blue);
   background-size: 100%;
   transition: background 0s;
+}
+.message {
+  display: none;
+  color: white;
+  text-align: center;
+  margin-top: 10vh;
+}
+.active {
+  display: block;
+}
+.message img {
+  border-radius: 50%;
+}
+.spin img {
+  animation: spin 1s infinite;
+}
+.error {
+  color: rgb(255, 85, 85);
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
