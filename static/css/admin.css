@@ -99,7 +99,7 @@ button:hover {
   font-size: 1.3em;
   margin-right: 4em;
 }
-.dropdown-toggle:hover {
+.nav-item > .nav-link:hover {
   text-decoration: underline;
 }
 .container-tabla {
