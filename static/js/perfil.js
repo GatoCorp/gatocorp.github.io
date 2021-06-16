@@ -17,9 +17,17 @@ document.addEventListener('DOMContentLoaded', async function () {
         .catch(err => console.log(err))
 })
 
+//cambiar contraseña
 const cambiar = document.getElementById('contra')
 
 cambiar.addEventListener('click',function(){
     document.cookie = `${codigo}; path=cambiarcontraseña.html;`
     window.location.href = 'cambiarcontraseña.html'
+})
+
+//cerrar sesion
+document.getElementById('sesion').addEventListener('click',(e)=>{
+    e.preventDefault()
+    document.cookie = ";max-age=0;"
+    window.location.href = 'login.html'
 })

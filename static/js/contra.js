@@ -1,5 +1,5 @@
-const API = "https://gatocorpapi.herokuapp.com"
-//const API = 'http://localhost:8000' //comentar despues de usar
+//const API = "https://gatocorpapi.herokuapp.com"
+const API = 'http://localhost:8000' //comentar despues de usar
 
 //codigo del estudiante
 const codigo = document.cookie
@@ -109,9 +109,20 @@ function actualizar() {
 document.getElementById('formulario').addEventListener('submit', (e) => {
     e.preventDefault()
     if (campos.contra) {
+        mostrarModal()
         document.getElementById('alerta').classList.remove('alert-activo') // pa no pelarle
         actualizar()
     } else {
         mostrarAlertError()
     }
+})
+
+function mostrarModal() {
+    document.getElementById('modal').style.display = 'block'
+}
+
+// cerrar modal
+document.getElementById('modal-close').addEventListener('click', () => {
+    document.getElementById('modal').style.display = 'none'
+    window.location.href = 'student.html'
 })

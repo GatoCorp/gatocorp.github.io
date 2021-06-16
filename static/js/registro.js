@@ -1,5 +1,5 @@
-const API = "https://gatocorpapi.herokuapp.com"
-//const API = "http://localhost:8000" //comentar despues de usar
+//const API = "https://gatocorpapi.herokuapp.com"
+const API = "http://localhost:8000" //comentar despues de usar
 
 function llenarSelect(data) {
     let res = document.getElementById('carrera')
@@ -223,6 +223,7 @@ document.getElementById('alert-button').addEventListener('click', (e) => {
 // cerrar modal
 document.getElementById('modal-close').addEventListener('click', () => {
     document.getElementById('modal').style.display = 'none'
+    window.location.href = 'login.html'
 })
 
 // cambiar la imagen y quitar el placeholder
