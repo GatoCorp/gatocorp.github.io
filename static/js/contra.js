@@ -1,5 +1,5 @@
-//const API = "https://gatocorpapi.herokuapp.com"
-const API = 'http://localhost:8000' //comentar despues de usar
+const API = "https://gatocorpapi.herokuapp.com"
+//const API = 'http://localhost:8000' //comentar despues de usar
 
 //codigo del estudiante
 const codigo = document.cookie
