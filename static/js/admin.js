@@ -67,8 +67,9 @@ function Dashboard() {
   const [carreraBuscada, setCarreraBuscada] = React.useState('todas')
   const [tabla, setTabla] = React.useState([])
   const [registros, setRegistros] = React.useState([])
+  const [actualizar, setActualizar] = React.useState([])
 
-  // esto se ejecuta solo una vez
+  // esto se ejecuta solo la primera vez que se entra a la pagina
   React.useEffect(() => {
     fetch('https://gatocorpapi.herokuapp.com/carreras_aux')
       .then(response => response.json())
@@ -79,7 +80,7 @@ function Dashboard() {
       .then(data => setRegistros(data))
   }, [])
 
-  // esto se ejecuta cada vez que cambian las variables
+  // esto se ejecuta cada vez que cambian las variables y cuando quiero actualizar
   React.useEffect(() => {
     if (carreraBuscada === 'todas') {
       fetch('https://gatocorpapi.herokuapp.com/estudiantes')
@@ -91,7 +92,7 @@ function Dashboard() {
         .then(response => response.json())
         .then(data => setTabla(data))
     }
-  }, [carreraBuscada])
+  }, [carreraBuscada, actualizar])
 
   return (
     <React.Fragment>
@@ -123,6 +124,13 @@ function Dashboard() {
                   }
                 </div>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" onClick={(e) => {
+                  e.preventDefault()
+                  setActualizar(!actualizar)
+                }}>Actualizar</a>
+              </li>
+
             </ul>
           </div>
         </div>
