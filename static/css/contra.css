@@ -1,0 +1,10 @@
+.contra {
+    width: 500px;
+}
+.botoncontra {
+    width: 150px;
+    position: relative;
+    left: 70px;
+    top: 100px;
+    margin-right: 50px;
+}

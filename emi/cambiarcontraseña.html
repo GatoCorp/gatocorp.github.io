@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="../static/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="../static/css/styles.css" rel="stylesheet" />
+  <link href="../static/css/contra.css" rel="stylesheet" />
+  <title>Cambiar Contraseña</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+      <ul class="navbar-nav me-auto">
+        <a class="navbar-brand" style="font-size: 30px; padding-left: 40px">Cambio de contraseña</a>
+      </ul>
+    </div>
+  </nav>
+  <div class="container contra">
+    <form id="formulario">
+      <div class="alert alert-dismissible alert-danger" id="alerta">
+        <button class="btn-close" id="alert-button"></button>
+        <strong>Error!</strong> Existen problemas en el formulario, revisalo otra vez.
+      </div>
+      <fieldset>
+        <legend>Ingrese su nueva contraseña</legend>
+          <div class="form-group" id="div__contra"> 
+            <label class="form-label mt-4">Nueva Contraseña</label>
+            <input type="password" class="form-control" id="contra" />
+            <div class="invalid-feedback verificacion-error">
+              La contraseña debe tener entre 6 y 20 caracteres
+            </div>
+          </div>
+          <div class="form-group" id="div__contra2">
+            <label class="form-label mt-4">Confirmar Contraseña</label>
+            <input type="password" class="form-control" id="contra2" />
+            <div class="invalid-feedback verificacion-error">
+              Las 2 contraseñas deben ser identicas
+            </div>
+        <button type="button" class="btn btn-primary botoncontra my-4">
+          Cancelar
+        </button>
+        <button type="submit" id="btnenviar" class="btn btn-primary botoncontra my-4">
+          Confirmar
+        </button>
+      </fieldset>
+    </form>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <script src="../static/js/contra.js"></script>
+</body>
+
+</html>
