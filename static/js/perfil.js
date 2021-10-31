@@ -1,12 +1,12 @@
 const API = "https://gatocorpapi.herokuapp.com"
 //const API = "http://localhost:8000" //comentar despues de usar
-const codigo = document.cookie
-console.log(codigo)
-document.addEventListener('DOMContentLoaded', async function () {
-    await fetch(`${API}/estudiantes/${codigo}`)
+const codigo = document.cookie.match(/codigo=([A-Z]\d{4}-\d{1});/)[1]
+console.log('codigo de la cookie:', codigo)
+document.addEventListener('DOMContentLoaded', function () {
+    fetch(`${API}/estudiantes/${codigo}`)[0]
         .then(response => response.json())
         .then(data => {
-            console.log(data)
+            console.log('data de la response:', data)
             document.getElementById('codigo').value = data[0].codigo
             document.getElementById('nombre').value = `${data[0].nombre} ${data[0].apellido}`
             document.getElementById('carrera').value = data[0].carrera
@@ -17,16 +17,16 @@ document.addEventListener('DOMContentLoaded', async function () {
         .catch(err => console.log(err))
 })
 
-//cambiar contraseña
+// cambiar contraseña
 const cambiar = document.getElementById('contra')
 
-cambiar.addEventListener('click',function(){
-    document.cookie = `${codigo}; path=cambiarcontraseña.html;`
-    window.location.href = 'cambiarcontraseña.html'
+cambiar.addEventListener('click', function () {
+    document.cookie = `${codigo}; path=cambiarcontra.html;`
+    window.location.href = 'cambiarcontra.html'
 })
 
 //cerrar sesion
-document.getElementById('sesion').addEventListener('click',(e)=>{
+document.getElementById('sesion').addEventListener('click', (e) => {
     e.preventDefault()
     document.cookie = ";max-age=0;"
     window.location.href = 'login.html'

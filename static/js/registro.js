@@ -139,23 +139,29 @@ const campos = {
 
 const todosLosCamposSonValidos = () => (campos.nombre && campos.apellido && campos.ci && campos.correo)
 
+// const validarFormulario = (e) => {
+//     switch (e.target.id) {
+//         case "nombre":
+//             validarCampo(expresiones.nombre, e.target, 'nombre')
+//             break
+//         case "apellido":
+//             validarCampo(expresiones.nombre, e.target, 'apellido')
+//             break
+//         case "ci":
+//             validarCampo(expresiones.telefono, e.target, 'ci')
+//             break
+//         case "correo":
+//             validarCampo(expresiones.correo, e.target, 'correo')
+//             break
+//     }
+// }
+
 const validarFormulario = (e) => {
-    switch (e.target.id) {
-        case "nombre":
-            validarCampo(expresiones.nombre, e.target, 'nombre')
-            break
-        case "apellido":
-            validarCampo(expresiones.nombre, e.target, 'apellido')
-            break
-        case "ci":
-            validarCampo(expresiones.telefono, e.target, 'ci')
-            break
-        case "correo":
-            validarCampo(expresiones.correo, e.target, 'correo')
-            break
-    }
+    let input = e.target
+    let campo = input.id
+    validarCampo(expresiones[campo], input, campo)
 }
-// document.getElementById('texto-modal').innerHTML = 'cuisaaa'
+
 const validarCampo = (expresion, input, campo) => {
     const elemento1 = document.getElementById(`div__${campo}`)
     const elemento2 = document.getElementById(input.id)
@@ -244,7 +250,7 @@ document.getElementById('foto').addEventListener('change', (e) => {
 document.getElementById('formulario').addEventListener('submit', (e) => {
     e.preventDefault()
     if (todosLosCamposSonValidos() && tengoTodosLosArchivos()) {
-        document.getElementById('alerta').classList.remove('alert-activo') // pa no pelarle
+        document.getElementById('alerta').classList.remove('alert-activo')
         agregarEstudiante()
     } else {
         mostrarAlertError()
