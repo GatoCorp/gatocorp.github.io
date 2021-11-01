@@ -119,9 +119,9 @@ function agregarEstudiante() {
 
 const inputs = document.querySelectorAll('#formulario input')
 const expresiones = {
-    nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
+    letras: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
     correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-    telefono: /^\d{7,14}$/ // 7 a 14 numeros.
+    numeros: /^\d{7,14}$/ // 7 a 14 numeros.
 }
 
 const campos = {
@@ -136,7 +136,12 @@ const todosLosCamposSonValidos = () => (campos.nombre && campos.apellido && camp
 const validarFormulario = (e) => {
     let input = e.target
     let campo = input.id
-    validarCampo(expresiones[campo], input, campo)
+    if (campo == 'nombre' || campo == 'apellido')
+        validarCampo(expresiones.letras, input, campo)
+    if (campo == 'ci')
+        validarCampo(expresiones.numeros, input, campo)
+    if (campo == 'correo')
+        validarCampo(expresiones.correo, input, campo)
 }
 
 const validarCampo = (expresion, input, campo) => {
