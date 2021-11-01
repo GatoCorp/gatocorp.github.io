@@ -1,5 +1,4 @@
 const API = 'https://gatocorpapi.herokuapp.com'
-//const API = "http://localhost:8000" //comentar despues de usar
 
 const ingresar = document.getElementById('login')
 

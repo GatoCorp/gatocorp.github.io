@@ -1,5 +1,4 @@
-const API = "https://gatocorpapi.herokuapp.com"
-//const API = "http://localhost:8000" //comentar despues de usar
+const API = 'https://gatocorpapi.herokuapp.com'
 
 function llenarSelect(data) {
     let res = document.getElementById('carrera')
@@ -33,9 +32,7 @@ async function generarNuevoCodigo() {
                 break
             }
         }
-        if (existeOtro)
-            continue
-        else
+        if (!existeOtro)
             return codigoNuevo
     }
 }
@@ -66,57 +63,54 @@ function generarLinkImagen(file) {
 }
 
 const getArchivoById = (id) => document.getElementById(id).files[0]
+
 function agregarEstudiante() {
     mostrarModal()
-
     // aqui leo los archivos
     let foto = getArchivoById('foto')
     let certifNac = getArchivoById('certifNac')
     let titulo = getArchivoById('titulo')
     let certifMed = getArchivoById('certifMed')
-    //  y genero los links de imagen simultaneamente
-    let p1 = generarLinkImagen(foto)
-    let p2 = generarLinkImagen(certifNac)
-    let p3 = generarLinkImagen(titulo)
-    let p4 = generarLinkImagen(certifMed)
 
-    let p5 = generarNuevoCodigo()
-    // una vez tenga todos los links y el codigo de estudiante
-    Promise.all([p1, p2, p3, p4, p5])
-        .then(values => {
-            let data = {
-                codigo: values[4],
-                nombre: document.getElementById('nombre').value,
-                apellido: document.getElementById('apellido').value,
-                ci: parseInt(document.getElementById('ci').value),
-                correo: document.getElementById('correo').value,
-                carrera: document.getElementById('carrera').value,
-                semestre: 1, // la hardcodeada is real
-                foto: values[0],
-                certificado_nacimiento: values[1],
-                titulo_bachiller: values[2],
-                certificado_medico: values[3]
-            }
+    // sube las imagenes y genera el codigo simultaneamente
+    Promise.all([
+        generarLinkImagen(foto),
+        generarLinkImagen(certifNac),
+        generarLinkImagen(titulo),
+        generarLinkImagen(certifMed),
+        generarNuevoCodigo()
+    ]).then(values => {
+        let data = {
+            codigo: values[4],
+            nombre: document.getElementById('nombre').value,
+            apellido: document.getElementById('apellido').value,
+            ci: parseInt(document.getElementById('ci').value),
+            correo: document.getElementById('correo').value,
+            carrera: document.getElementById('carrera').value,
+            semestre: 1, // la hardcodeada is real
+            foto: values[0],
+            certificado_nacimiento: values[1],
+            titulo_bachiller: values[2],
+            certificado_medico: values[3]
+        }
 
-            console.log(JSON.stringify(data, null, 4))
+        console.log(JSON.stringify(data, null, 4))
 
-            fetch(`${API}/estudiantes`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-                .then(response => response.json())
-                .then(data => {
-                    // aqui ya tengo la respuesta del servidor en JSON
-                    cambiarModal()
-                    console.log(data)
-                    document.getElementById('formulario').reset()
-                })
-                .catch(error => console.log(error))
-        })
-        .catch(error => console.log(error))
+        fetch(`${API}/estudiantes`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(response => response.json())
+            .then(data => {
+                // aqui ya tengo la respuesta del servidor en JSON
+                cambiarModal()
+                console.log(data)
+                document.getElementById('formulario').reset()
+            }).catch(error => console.log(error))
+
+    }).catch(error => console.log(error))
 }
 
 /**
@@ -138,23 +132,6 @@ const campos = {
 }
 
 const todosLosCamposSonValidos = () => (campos.nombre && campos.apellido && campos.ci && campos.correo)
-
-// const validarFormulario = (e) => {
-//     switch (e.target.id) {
-//         case "nombre":
-//             validarCampo(expresiones.nombre, e.target, 'nombre')
-//             break
-//         case "apellido":
-//             validarCampo(expresiones.nombre, e.target, 'apellido')
-//             break
-//         case "ci":
-//             validarCampo(expresiones.telefono, e.target, 'ci')
-//             break
-//         case "correo":
-//             validarCampo(expresiones.correo, e.target, 'correo')
-//             break
-//     }
-// }
 
 const validarFormulario = (e) => {
     let input = e.target

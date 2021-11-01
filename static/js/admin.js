@@ -20,8 +20,7 @@ function Login(props) {
         usuario: usuario,
         contrasena: contrasena
       })
-    })
-      .then(response => response.json())
+    }).then(response => response.json())
       .then(data => {
         if (data.correcto) {
           message.classList.remove('active', 'spin')
@@ -74,10 +73,12 @@ function Dashboard() {
     fetch('https://gatocorpapi.herokuapp.com/carreras_aux')
       .then(response => response.json())
       .then(data => setCarreras(data))
+      .catch(err => console.log(err))
 
     fetch('https://gatocorpapi.herokuapp.com/registros')
       .then(response => response.json())
       .then(data => setRegistros(data))
+      .catch(err => console.log(err))
   }, [])
 
   // esto se ejecuta cada vez que cambian las variables y cuando quiero actualizar
@@ -86,11 +87,13 @@ function Dashboard() {
       fetch('https://gatocorpapi.herokuapp.com/estudiantes')
         .then(response => response.json())
         .then(data => setTabla(data))
+        .catch(err => console.log(err))
     }
     else {
       fetch(`https://gatocorpapi.herokuapp.com/estudiantes/carrera/${carreraBuscada}`)
         .then(response => response.json())
         .then(data => setTabla(data))
+        .catch(err => console.log(err))
     }
   }, [carreraBuscada, actualizar])
 

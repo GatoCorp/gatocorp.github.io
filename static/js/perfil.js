@@ -1,5 +1,5 @@
-const API = "https://gatocorpapi.herokuapp.com"
-//const API = "http://localhost:8000" //comentar despues de usar
+const API = 'https://gatocorpapi.herokuapp.com'
+
 const codigo = document.cookie.match(/codigo=([A-Z]\d{4}-\d{1});/)[1]
 console.log('codigo de la cookie:', codigo)
 document.addEventListener('DOMContentLoaded', function () {

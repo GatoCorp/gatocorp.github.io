@@ -1,5 +1,4 @@
-const API = "https://gatocorpapi.herokuapp.com"
-//const API = 'http://localhost:8000' //comentar despues de usar
+const API = 'https://gatocorpapi.herokuapp.com'
 
 //codigo del estudiante
 const codigo = document.cookie
@@ -12,7 +11,7 @@ const campos = {
     contra: false
 }
 
-//valida si el formulario esta llenado correctamente
+// valida si el formulario esta llenado correctamente
 const validarFormulario = (e) => {
     switch (e.target.id) {
         case "contra":
