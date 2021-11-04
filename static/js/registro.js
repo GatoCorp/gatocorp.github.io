@@ -57,6 +57,9 @@ function generarLinkImagen(file) {
             resolve(response.data['url'])
         })
     })
+    // let response = await $.ajax(settings)
+    // response = JSON.parse(response)
+    // return response.data['url']
 }
 
 const getArchivoById = (id) => document.getElementById(id).files[0]

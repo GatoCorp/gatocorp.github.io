@@ -19,10 +19,10 @@ function Navbar() {
         <div class="navbar-collapse collapse" id="navbarColor03">
           <ul class="navbar-nav me-auto">
             <li class="nav-item">
-              <a class="nav-link" href="../../emi/registro.html">Inscripciones</a>
+              <a class="nav-link" href="emi/registro.html">Inscripciones</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="../../emi/login.html">Perfil de estudiante</a>
+              <a class="nav-link" href="emi/login.html">Perfil de estudiante</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
@@ -38,7 +38,7 @@ function Navbar() {
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="../../emi/admin.html">Usuarios del Sistema</a>
+              <a class="nav-link" href="emi/admin.html">Usuarios del Sistema</a>
             </li>
           </ul>
         </div>
@@ -158,7 +158,7 @@ function Carrera(props) {
 }
 
 function App() {
-  const Router = ReactRouterDOM.BrowserRouter
+  const Router = ReactRouterDOM.HashRouter
   const Route = ReactRouterDOM.Route
   const Switch = ReactRouterDOM.Switch
   return (
