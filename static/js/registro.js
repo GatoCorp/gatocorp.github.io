@@ -21,12 +21,12 @@ function generarCodigo() {
 
 async function generarNuevoCodigo() {
     let codigos = await fetchCodigos()
-    let codigoNuevo
-    let existeOtro
+    let codigoNuevo, existeOtro
+
     while (true) {
         codigoNuevo = generarCodigo()
         existeOtro = false
-        for (i in codigos) {
+        for (i of codigos) {
             if (i.codigo == codigoNuevo) {
                 existeOtro = true
                 break
@@ -57,9 +57,6 @@ function generarLinkImagen(file) {
             resolve(response.data['url'])
         })
     })
-    // let response = await $.ajax(settings)
-    // response = JSON.parse(response)
-    // return response.data['url']
 }
 
 const getArchivoById = (id) => document.getElementById(id).files[0]
@@ -136,12 +133,14 @@ const todosLosCamposSonValidos = () => (campos.nombre && campos.apellido && camp
 const validarFormulario = (e) => {
     let input = e.target
     let campo = input.id
+    let expresion
     if (campo == 'nombre' || campo == 'apellido')
-        validarCampo(expresiones.letras, input, campo)
-    if (campo == 'ci')
-        validarCampo(expresiones.numeros, input, campo)
-    if (campo == 'correo')
-        validarCampo(expresiones.correo, input, campo)
+        expresion = expresiones.letras
+    else if (campo == 'ci')
+        expresion = expresiones.numeros
+    else if (campo == 'correo')
+        expresion = expresiones.correo
+    validarCampo(expresion, input, campo)
 }
 
 const validarCampo = (expresion, input, campo) => {
