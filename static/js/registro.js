@@ -74,24 +74,24 @@ function agregarEstudiante() {
 
     // sube las imagenes y genera el codigo simultaneamente
     Promise.all([
+        generarNuevoCodigo(),
         generarLinkImagen(foto),
         generarLinkImagen(certifNac),
         generarLinkImagen(titulo),
         generarLinkImagen(certifMed),
-        generarNuevoCodigo()
     ]).then(values => {
         let data = {
-            codigo: values[4],
+            codigo: values[0],
             nombre: document.getElementById('nombre').value,
             apellido: document.getElementById('apellido').value,
             ci: parseInt(document.getElementById('ci').value),
             correo: document.getElementById('correo').value,
             carrera: document.getElementById('carrera').value,
             semestre: 1, // la hardcodeada is real
-            foto: values[0],
-            certificado_nacimiento: values[1],
-            titulo_bachiller: values[2],
-            certificado_medico: values[3]
+            foto: values[1],
+            certificado_nacimiento: values[2],
+            titulo_bachiller: values[3],
+            certificado_medico: values[4]
         }
 
         console.log(JSON.stringify(data, null, 4))
@@ -117,7 +117,6 @@ function agregarEstudiante() {
  * Validación de los campos del formulario
  */
 
-const inputs = document.querySelectorAll('#formulario input')
 const expresiones = {
     letras: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
     correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
@@ -164,6 +163,7 @@ const validarCampo = (expresion, input, campo) => {
     }
 }
 
+const inputs = document.querySelectorAll('#formulario input')
 inputs.forEach(input => {
     input.addEventListener('keyup', validarFormulario)
     input.addEventListener('blur', validarFormulario)
@@ -213,7 +213,7 @@ document.getElementById('alert-button').addEventListener('click', (e) => {
 // cerrar modal
 document.getElementById('modal-close').addEventListener('click', () => {
     document.getElementById('modal').style.display = 'none'
-    window.location.href = 'login.html'
+    // window.location.href = 'login.html' // redirigir
 })
 
 // cambiar la imagen y quitar el placeholder
