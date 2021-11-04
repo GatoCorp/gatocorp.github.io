@@ -108,7 +108,12 @@ function agregarEstudiante() {
                 cambiarModal()
                 console.log(data)
                 document.getElementById('formulario').reset()
-            }).catch(error => console.log(error))
+            }).catch(error => {
+                console.log(error)
+                // por ahora solo muestro error y cierro el modal de cargando
+                mostrarAlertError()
+                document.getElementById('modal').style.display = 'none'
+            })
 
     }).catch(error => console.log(error))
 }
@@ -142,7 +147,8 @@ const validarFormulario = (e) => {
         expresion = expresiones.numeros
     else if (campo == 'correo')
         expresion = expresiones.correo
-    validarCampo(expresion, input, campo)
+    if (expresion)
+        validarCampo(expresion, input, campo)
 }
 
 const validarCampo = (expresion, input, campo) => {
