@@ -6,13 +6,21 @@ document.addEventListener('DOMContentLoaded', function () {
     fetch(`${API}/estudiantes/codigo`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          codigo: codigo
+            codigo: codigo
         })
-      }).then(response => response.json())
-        .then(data => console.log(data))
+    }).then(response => response.json())
+        .then(data => {
+            console.log('data de la response:', data)
+            document.getElementById('codigo').value = data[0].codigo
+            document.getElementById('nombre').value = `${data[0].nombre} ${data[0].apellido}`
+            document.getElementById('carrera').value = data[0].carrera
+            document.getElementById('semestre').value = data[0].semestre
+            document.getElementById('correo').value = data[0].correo
+            document.getElementById('foto').src = data[0].foto
+        })
         .catch(err => console.log(err))
 })
 
